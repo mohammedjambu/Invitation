@@ -178,19 +178,19 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
 
                 {/* Card Bottom: Date, Venue & Moula TUS Blessing */}
                 <div className="relative z-10 space-y-1 pb-1 sm:pb-2">
-                  <p className="font-serif-luxury font-semibold text-xs sm:text-sm md:text-base text-[#3D3227] tracking-wide">
+                  {/* <p className="font-serif-luxury font-semibold text-xs sm:text-sm md:text-base text-[#3D3227] tracking-wide">
                     {weddingData.dateDisplay}
                   </p>
                   <p className="font-serif-luxury italic text-[10px] sm:text-xs text-[#8D7047]">
                     {weddingData.hijriDateDisplay}
                   </p>
                   
-                  {/* Auspices Tag */}
+                  Auspices Tag
                   <div className="pt-1">
                     <span className="inline-block px-3 py-0.5 rounded-full bg-[#F5E8D7]/80 border border-[#B89A68]/35 text-[9px] sm:text-[10px] text-[#8D7047] font-serif-luxury italic">
                       ✨ {weddingData.nikahStatement}
                     </span>
-                  </div>
+                  </div> */}
 
                   <p className="font-serif-luxury text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-[#A68A5B] pt-1">
                     {weddingData.closingFamilies}

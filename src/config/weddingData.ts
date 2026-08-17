@@ -124,7 +124,7 @@ export const weddingData: WeddingConfig = {
     reference: "Surah Ar-Rum 30:21"
   },
   closingMessage: "We eagerly await the pleasure of your company, your blessings, and your prayers as we embark on this sacred journey of togetherness.",
-  closingFamilies: "The Merchant & Kapasi Families",
+  closingFamilies: "The Sodawala Family",
   coupleStory: {
     title: "A Covenant of Devotion & Grace",
     quote: "“Two souls united under divine grace, embarking on a lifelong path of faith, love, and harmony.”",
