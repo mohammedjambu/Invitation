@@ -201,7 +201,7 @@ export const HeroInvitation: React.FC = () => {
             </motion.div>
 
             {/* STAGE 9: Nikah Status Badge (Ceremonial Gold Foil Seal) */}
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 2.5, duration: 0.8 }}
@@ -211,7 +211,7 @@ export const HeroInvitation: React.FC = () => {
               <span className="font-serif-luxury italic text-xs sm:text-sm font-medium tracking-wide">
                 {weddingData.nikahStatement}
               </span>
-            </motion.div>
+            </motion.div> */}
 
           </div>
         </motion.div>

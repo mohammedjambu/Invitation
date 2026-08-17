@@ -28,9 +28,9 @@ export const CoupleStory: React.FC = () => {
                 <img
                   src={weddingData.coupleStory.image}
                   alt={`${weddingData.groomName} & ${weddingData.brideName} Couple Portrait`}
-                  className="w-full h-full object-cover object-center filter saturate-[0.95] contrast-[1.02] transition-transform duration-1000 hover:scale-105"
+                  className="w-full h-full object-cover object-top filter saturate-[0.95] contrast-[1.02] transition-transform duration-1000 hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#3D3227]/40 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#3D3227]/40 via-transparent to-transparent pointer-events-none" />
                 
                 {/* Monogram Badge Overlay */}
                 <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-[#FFFDF9]/90 backdrop-blur-md px-5 py-2 rounded-full border border-[#B89A68]/40 shadow-lg flex items-center gap-2">

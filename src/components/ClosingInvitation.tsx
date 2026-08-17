@@ -50,7 +50,7 @@ export const ClosingInvitation: React.FC = () => {
 
         {/* Ultra-Minimal Footer Note */}
         <div className="pt-6 text-[11px] font-sans-luxury text-[#8D7047]/60 tracking-wider">
-          In the Blessed Presence of Moula TUS • {weddingData.dateDisplay}
+          {weddingData.dateDisplay}
         </div>
       </div>
     </footer>

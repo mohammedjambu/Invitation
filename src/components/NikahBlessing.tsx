@@ -103,7 +103,7 @@ export const NikahBlessing: React.FC = () => {
                   <img
                     src={photoSrc}
                     alt="Nikah Solemnization Ceremonial Portrait"
-                    className="w-full h-full object-cover object-center filter saturate-[0.98] contrast-[1.01] transition-transform duration-1000 group-hover:scale-103"
+                    className="w-full h-full object-cover object-top filter saturate-[0.98] contrast-[1.01] transition-transform duration-1000 group-hover:scale-103"
                   />
                   
                   {/* Subtle Inner Lighting & Vignette Overlay */}

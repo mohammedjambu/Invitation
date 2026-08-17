@@ -315,7 +315,7 @@ export const FormalInvitation: React.FC = () => {
           <div className="relative z-10 px-3 sm:px-6 pt-22 sm:pt-26 md:pt-30 pb-6 sm:pb-8">
 
             {/* 1. TOP: Arabic Bismillah Calligraphy (Generous Top Spacing) */}
-            <motion.div variants={childFadeUp} className="mb-4 sm:mb-6 max-w-[200px] sm:max-w-[240px] md:max-w-[280px] mx-auto px-1">
+            <motion.div variants={childFadeUp} className="mb-4 sm:mb-6 mt-8 max-w-[200px] sm:max-w-[240px] md:max-w-[280px] mx-auto px-1">
               <p className="font-arabic-luxury text-xl sm:text-2xl md:text-3xl text-[#6E5232] tracking-normal leading-relaxed drop-shadow-xs text-center">
                 {weddingData.bismillahArabic}
               </p>
