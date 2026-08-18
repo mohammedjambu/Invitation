@@ -2,12 +2,16 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { weddingData } from '../config/weddingData';
 import { IslamicStarSymbol } from './Ornament';
-import { Sparkles, Heart, Crown } from 'lucide-react';
+import { Moon, Sun, Flower2, Users, Crown, Sparkles, Heart } from 'lucide-react';
 
 const iconMap: Record<string, React.ElementType> = {
+  Moon,
+  Sun,
+  Flower2,
+  Users,
+  Crown,
   Sparkles,
-  Heart,
-  Crown
+  Heart
 };
 
 export const EventsTimeline: React.FC = () => {
@@ -42,6 +46,7 @@ export const EventsTimeline: React.FC = () => {
             {weddingData.events.map((event, index) => {
               const IconComponent = iconMap[event.iconName] || Sparkles;
               const isEven = index % 2 === 0;
+              const isMain = event.isMainEvent;
 
               return (
                 <motion.div
@@ -49,14 +54,20 @@ export const EventsTimeline: React.FC = () => {
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-80px" }}
-                  transition={{ duration: 0.8, delay: index * 0.2 }}
+                  transition={{ duration: 0.8, delay: index * 0.15 }}
                   className={`relative flex flex-col sm:flex-row items-start ${
                     isEven ? 'sm:flex-row-reverse' : ''
                   }`}
                 >
                   {/* Timeline Node Icon Marker */}
-                  <div className="absolute left-4 sm:left-1/2 top-0 transform -translate-x-1/2 z-10 w-9 h-9 rounded-full bg-[#FFFDF9] border-2 border-[#B89A68] flex items-center justify-center shadow-md text-[#8D7047]">
-                    <IconComponent size={16} />
+                  <div
+                    className={`absolute left-4 sm:left-1/2 top-0 transform -translate-x-1/2 z-10 flex items-center justify-center transition-all duration-300 ${
+                      isMain
+                        ? 'w-11 h-11 rounded-full bg-gradient-to-br from-[#FFFDF9] via-[#FDF8EE] to-[#F5E8D7] border-2 border-[#8D7047] shadow-[0_0_16px_rgba(184,154,104,0.4)] text-[#7A5E35]'
+                        : 'w-9 h-9 rounded-full bg-[#FFFDF9] border-2 border-[#B89A68] shadow-md text-[#8D7047]'
+                    }`}
+                  >
+                    <IconComponent size={isMain ? 18 : 16} />
                   </div>
 
                   {/* Event Details Content Card */}
@@ -65,22 +76,68 @@ export const EventsTimeline: React.FC = () => {
                       isEven ? 'sm:text-right sm:pr-8' : 'sm:text-left sm:pl-8'
                     }`}
                   >
-                    <div className="bg-[#FFFDF9] p-6 sm:p-8 rounded-2xl gold-foil-border shadow-lg relative group transition-all duration-300 hover:shadow-xl">
-                      <span className="inline-block px-3 py-1 rounded-full bg-[#F5E8D7] text-[#8D7047] text-xs font-serif-luxury italic mb-3">
-                        {event.date}
-                      </span>
+                    <div
+                      className={`p-6 sm:p-8 rounded-2xl relative group transition-all duration-300 ${
+                        isMain
+                          ? 'bg-gradient-to-br from-[#FFFDF9] via-[#FCF7EF] to-[#F7EEDD] border-2 border-[#C5A880]/80 shadow-[0_10px_35px_rgba(184,154,104,0.2)] hover:shadow-[0_12px_40px_rgba(184,154,104,0.28)] ring-1 ring-[#B89A68]/30'
+                          : 'bg-[#FFFDF9] gold-foil-border shadow-lg hover:shadow-xl'
+                      }`}
+                    >
+                      {/* Subtle champagne gold corner highlight for main event */}
+                      {isMain && (
+                        <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-[#B89A68]/15 to-transparent rounded-tr-2xl pointer-events-none" />
+                      )}
+
+                      {/* Header Badges */}
+                      <div
+                        className={`flex flex-wrap gap-2 items-center mb-3 ${
+                          isEven ? 'sm:justify-end' : 'sm:justify-start'
+                        }`}
+                      >
+                        {isMain && (
+                          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-gradient-to-r from-[#F3E5D0] via-[#EADBCE] to-[#F3E5D0] border border-[#B89A68]/60 text-[#7A5E35] text-[11px] font-serif-luxury font-semibold uppercase tracking-wider shadow-xs">
+                            <Sparkles size={11} className="text-[#8D7047]" />
+                            Bride's Main Celebration
+                          </span>
+                        )}
+                        <span
+                          className={`inline-block px-3 py-1 rounded-full text-xs font-serif-luxury italic ${
+                            isMain
+                              ? 'bg-[#EFE2D1] text-[#7A5E35] font-medium border border-[#B89A68]/30'
+                              : 'bg-[#F5E8D7] text-[#8D7047]'
+                          }`}
+                        >
+                          {event.date}
+                        </span>
+                      </div>
                       
-                      <h3 className="font-serif-luxury text-2xl sm:text-3xl text-[#3D3227] font-semibold mb-1">
+                      <h3
+                        className={`font-serif-luxury text-[#3D3227] font-semibold mb-1 ${
+                          isMain ? 'text-3xl sm:text-4xl text-[#2C2218]' : 'text-2xl sm:text-3xl'
+                        }`}
+                      >
                         {event.title}
                       </h3>
                       
                       {event.subTitle && (
-                        <p className="font-serif-luxury italic text-xs sm:text-sm text-[#8D7047] mb-3">
+                        <p
+                          className={`font-serif-luxury italic text-xs sm:text-sm mb-3 ${
+                            isMain ? 'text-[#7A5E35] font-medium' : 'text-[#8D7047]'
+                          }`}
+                        >
                           {event.subTitle}
                         </p>
                       )}
 
-                      <div className="h-[1px] w-12 bg-[#B89A68]/30 mb-3 my-2" />
+                      <div
+                        className={`h-[1px] mb-3 my-2 ${
+                          isEven ? 'sm:ml-auto' : ''
+                        } ${
+                          isMain
+                            ? 'w-20 bg-gradient-to-r from-[#B89A68] to-[#D8BE94]'
+                            : 'w-12 bg-[#B89A68]/30'
+                        }`}
+                      />
 
                       <p className="font-sans-luxury text-xs sm:text-sm font-semibold text-[#8D7047] tracking-wide uppercase mb-1">
                         ⏰ {event.time}
@@ -94,9 +151,15 @@ export const EventsTimeline: React.FC = () => {
                         {event.description}
                       </p>
 
-                      <div className="mt-4 flex items-center gap-1.5 text-[#B89A68]">
+                      <div
+                        className={`mt-4 flex items-center gap-1.5 text-[#B89A68] ${
+                          isEven ? 'sm:justify-end' : 'sm:justify-start'
+                        }`}
+                      >
                         <IslamicStarSymbol size={12} />
-                        <span className="text-[10px] tracking-widest uppercase font-serif-luxury">Blessing</span>
+                        <span className="text-[10px] tracking-widest uppercase font-serif-luxury">
+                          {isMain ? 'Sacred Main Gathering' : 'Blessing'}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -110,3 +173,4 @@ export const EventsTimeline: React.FC = () => {
     </section>
   );
 };
+

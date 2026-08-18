@@ -91,7 +91,7 @@ export const Countdown: React.FC = () => {
           </div>
 
           <p className="font-serif-luxury italic text-xs sm:text-sm text-[#8D7047] mt-4">
-            Saturday, 28th November 2026 • Saifee Masjid & Palace Pavilion
+            Friday, 27th November 2026
           </p>
         </motion.div>
       </div>

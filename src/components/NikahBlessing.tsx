@@ -41,7 +41,7 @@ export const NikahBlessing: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.15, duration: 0.8 }}
-            className="pt-4 sm:pt-6 mb-2"
+            className="pt-8 sm:pt-6 mb-4"
           >
             <span className="font-serif-luxury text-xs sm:text-sm tracking-[0.4em] uppercase text-[#8D7047] font-semibold block">
               N I K A H   M U B A R A K
@@ -162,7 +162,7 @@ export const NikahBlessing: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.8, duration: 0.8 }}
-            className="pt-4 pb-4 max-w-lg mx-auto relative"
+            className="pb-4 max-w-lg mx-auto relative"
           >
             <div className="flex items-center justify-center gap-2 mb-3 text-[#B89A68]">
               <span className="h-[1px] w-10 bg-[#B89A68]/30" />

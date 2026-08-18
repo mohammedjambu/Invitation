@@ -71,7 +71,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
           <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_40%,rgba(255,253,248,0.92)_0%,rgba(246,238,226,0.65)_50%,rgba(238,225,208,0.85)_100%)]" />
 
           {/* Golden Floating Vignette Dust */}
-          <div className="absolute inset-0 pointer-events-none opacity-20 bg-[radial-gradient(#C5A880_1px,transparent_1px)] [background-size:32px_32px]" />
+          <div className="absolute inset-0 pointer-events-none opacity-20 bg-[radial-gradient(#C5A880_1px,transparent_1px)] bg-size-[32px_32px]" />
 
           {/* ========================================================= */}
           {/* TOP SECTION: ARABIC BISMILLAH & ISLAMIC GEOMETRIC ORNAMENT */}
@@ -94,28 +94,28 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
               transition={{ delay: 0.35, duration: 0.7, ease: 'easeOut' }}
               className="flex items-center justify-center gap-2 mt-4"
             >
-              <span className="h-[1px] w-6 sm:w-10 bg-gradient-to-r from-transparent to-[#C5A880]/60" />
+              <span className="h-px w-6 sm:w-10 bg-linear-to-r from-transparent to-[#C5A880]/60" />
               <svg width="22" height="22" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-[#C5A880]">
                 <rect x="7" y="7" width="18" height="18" stroke="currentColor" strokeWidth="1.2" transform="rotate(0 16 16)" fill="none" />
                 <rect x="7" y="7" width="18" height="18" stroke="currentColor" strokeWidth="1.2" transform="rotate(45 16 16)" fill="none" />
                 <circle cx="16" cy="16" r="4.5" stroke="currentColor" strokeWidth="1" fill="none" />
                 <circle cx="16" cy="16" r="1.8" fill="currentColor" />
               </svg>
-              <span className="h-[1px] w-6 sm:w-10 bg-gradient-to-l from-transparent to-[#C5A880]/60" />
+              <span className="h-px w-6 sm:w-10 bg-linear-to-l from-transparent to-[#C5A880]/60" />
             </motion.div>
           </motion.div>
 
           {/* ========================================================= */}
           {/* MAIN CENTERPIECE: PHYSICAL LUXURY ENVELOPE & INVITATION   */}
           {/* ========================================================= */}
-          <div className="relative z-20 w-full max-w-[480px] sm:max-w-[560px] md:max-w-[620px] my-auto flex items-center justify-center perspective-1200">
+          <div className="relative z-20 w-full max-w-120 sm:max-w-140 md:max-w-155 my-auto flex items-center justify-center perspective-1200">
             
             {/* Outer Envelope Wrapper */}
             <motion.div
               initial={{ opacity: 0, y: 25, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              className="relative w-full aspect-[1.55/1] max-h-[380px] sm:max-h-[410px] flex items-center justify-center"
+              className="relative w-full aspect-[1.55/1] max-h-95 sm:max-h-102.5 flex items-center justify-center"
             >
               {/* Envelope Ambient Drop Shadow */}
               <div className="absolute inset-0 bg-[#7C623C]/18 rounded-2xl blur-xl transform translate-y-6 scale-95 pointer-events-none" />
@@ -125,9 +125,9 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
               {/* ----------------------------------------------------- */}
               <div className="absolute inset-0 rounded-xl bg-[#E8D9C5] envelope-shadow overflow-hidden border border-[#D5C2AA]">
                 {/* Pocket Depth Shadow Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-b from-[#A88E6B]/30 via-transparent to-[#8C714E]/20 pointer-events-none" />
+                <div className="absolute inset-0 bg-linear-to-b from-[#A88E6B]/30 via-transparent to-[#8C714E]/20 pointer-events-none" />
                 {/* Fine Texture Lines */}
-                <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#8C714E_1px,transparent_1px)] [background-size:16px_16px]" />
+                <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#8C714E_1px,transparent_1px)] bg-size-[16px_16px]" />
               </div>
 
               {/* ----------------------------------------------------- */}
@@ -147,10 +147,10 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
                 className="absolute w-[88%] sm:w-[90%] h-[92%] sm:h-[94%] top-[4%] bg-[#FAF5ED] rounded-lg gold-double-line card-shadow overflow-hidden p-4 sm:p-6 md:p-8 flex flex-col justify-between items-center text-center cursor-default transform-gpu"
               >
                 {/* Delicate Corner Filigree Ornaments */}
-                <CornerFiligree position="top-left" className="!w-6 !h-6 sm:!w-9 sm:!h-9 text-[#C5A880]/70" />
-                <CornerFiligree position="top-right" className="!w-6 !h-6 sm:!w-9 sm:!h-9 text-[#C5A880]/70" />
-                <CornerFiligree position="bottom-left" className="!w-6 !h-6 sm:!w-9 sm:!h-9 text-[#C5A880]/70" />
-                <CornerFiligree position="bottom-right" className="!w-6 !h-6 sm:!w-9 sm:!h-9 text-[#C5A880]/70" />
+                <CornerFiligree position="top-left" className="w-6! h-6! sm:w-9! sm:h-9! text-[#C5A880]/70" />
+                <CornerFiligree position="top-right" className="w-6! h-6! sm:w-9! sm:h-9! text-[#C5A880]/70" />
+                <CornerFiligree position="bottom-left" className="w-6! h-6! sm:w-9! sm:h-9! text-[#C5A880]/70" />
+                <CornerFiligree position="bottom-right" className="w-6! h-6! sm:w-9! sm:h-9! text-[#C5A880]/70" />
 
                 {/* Fine Inner Dotted Frame */}
                 <div className="absolute inset-2 sm:inset-3 rounded-md border border-dashed border-[#C5A880]/40 pointer-events-none" />
@@ -170,7 +170,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
                   <h2 className="font-script-luxury text-3xl sm:text-5xl md:text-6xl text-[#8D7047] font-normal leading-tight tracking-wide drop-shadow-sm">
                     {weddingData.brideName} & {weddingData.groomName}
                   </h2>
-                  <div className="h-[1px] w-20 sm:w-28 bg-gradient-to-r from-transparent via-[#C5A880] to-transparent mx-auto my-1.5" />
+                  <div className="h-px w-20 sm:w-28 bg-linear-to-r from-transparent via-[#C5A880] to-transparent mx-auto my-1.5" />
                   <p className="font-serif-luxury text-[10px] sm:text-xs italic text-[#6B5B49] max-w-[85%] mx-auto">
                     At the auspicious celebration of their Nikah & Wedding
                   </p>
@@ -250,7 +250,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
                     opacity: isCardUp ? 0 : 1
                   }}
                   transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                  className="absolute left-1/2 -translate-x-1/2 top-[175px] sm:top-[190px] md:top-[205px] -translate-y-1/2 z-40 w-14 h-14 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-full wax-seal-gradient flex items-center justify-center cursor-pointer shadow-2xl group focus:outline-none"
+                  className="absolute left-1/2 -translate-x-1/2 top-43.75 sm:top-47.5 md:top-51.25 -translate-y-1/2 z-40 w-14 h-14 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-full wax-seal-gradient flex items-center justify-center cursor-pointer shadow-2xl group focus:outline-none"
                   aria-label="Open Wedding Invitation Envelope"
                 >
                   {/* Outer Wax Seal Stamp Bevel Ring */}

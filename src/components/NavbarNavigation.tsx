@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Volume2, VolumeX, Menu, X, Heart, Calendar, MapPin, Send, Music } from 'lucide-react';
+import { Volume2, VolumeX, Menu, X, Heart, Calendar, MapPin, Music } from 'lucide-react';
 import { weddingData } from '../config/weddingData';
 import { useAudio } from '../context/AudioContext';
 
@@ -25,7 +25,7 @@ export const NavbarNavigation: React.FC = () => {
     { name: 'Nikah Blessing', href: '#nikah-section', icon: Heart },
     { name: 'Events Schedule', href: '#events-section', icon: Calendar },
     { name: 'Venue & Map', href: '#venue-section', icon: MapPin },
-    { name: 'RSVP Card', href: '#rsvp-section', icon: Send }
+    // { name: 'RSVP Card', href: '#rsvp-section', icon: Send }
   ];
 
   return (

@@ -9,7 +9,7 @@ export const ClosingInvitation: React.FC = () => {
   };
 
   return (
-    <footer className="relative py-20 px-4 sm:px-6 bg-gradient-to-b from-[#F8F0E5] via-[#F5E8D7] to-[#EFE0CC] overflow-hidden text-center border-t border-[#B89A68]/20">
+    <footer className="relative py-20 px-4 sm:px-6 bg-linear-to-b from-[#F8F0E5] via-[#F5E8D7] to-[#EFE0CC] overflow-hidden text-center border-t border-[#B89A68]/20">
       
       <div className="max-w-3xl mx-auto relative z-10 space-y-6">
         <motion.div

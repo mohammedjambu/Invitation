@@ -8,6 +8,7 @@ export interface EventItem {
   dressCode?: string;
   description: string;
   iconName: string;
+  isMainEvent?: boolean;
 }
 
 export interface WeddingConfig {
@@ -79,34 +80,55 @@ export const weddingData: WeddingConfig = {
   brideParents: "Daughter of Mr. Zulfiqar & Mrs. Mariyam Sodawala",
   events: [
     {
+      id: "maandvo",
+      title: "Maandvo",
+      subTitle: "Auspicious Ceremonial Initiation",
+      date: "Monday, 23rd November 2026",
+      time: "Evening",
+      venue: "Venue to be announced",
+      description: "An auspicious gathering filled with traditional prayers, warmth, and sacred blessings to mark the commencement of our wedding festivities.",
+      iconName: "Moon"
+    },
+    {
+      id: "shitabi",
+      title: "Shitabi",
+      subTitle: "Sacred Congregation & Morning Gratitude",
+      date: "Tuesday, 24th November 2026",
+      time: "Morning",
+      venue: "Venue to be announced",
+      description: "A serene morning gathering of prayer, gratitude, and joyful fellowship with family and cherished guests.",
+      iconName: "Sun"
+    },
+    {
       id: "mehendi",
-      title: "Manqabat & Mehendi Night",
-      subTitle: "An evening of joyful melodies and intricate henna art",
+      title: "Mehendi",
+      subTitle: "Henna Artistry & Joyful Melodies",
+      date: "Wednesday, 25th November 2026",
+      time: "Morning",
+      venue: "Venue to be announced",
+      description: "A vibrant morning celebrating delicate henna artistry, rich traditions, music, and cherished family moments.",
+      iconName: "Flower2"
+    },
+    {
+      id: "mosalu",
+      title: "Mosalu",
+      subTitle: "Maternal Blessings & Family Gathering",
+      date: "Thursday, 26th November 2026",
+      time: "Afternoon",
+      venue: "Venue to be announced",
+      description: "A heartwarming afternoon ceremony honoring maternal heritage, welcoming traditional gifts, and celebrating family togetherness.",
+      iconName: "Users"
+    },
+    {
+      id: "zafaf-jaman",
+      title: "Zafaf Jaman",
+      subTitle: "Bride's Main Celebration & Gala Banquet",
       date: "Friday, 27th November 2026",
-      time: "7:00 PM Onwards",
-      venue: "Al-Jamea Royal Courtyard Pavilion",
-      description: "Gather with us for an enchanted night filled with traditional Manqabat recitations, delicate henna, and celebratory feasting.",
-      iconName: "Sparkles"
-    },
-    {
-      id: "nikah",
-      title: "Sacred Nikah & Royal Feast",
-      subTitle: "Solemnized in the Blessed Presence of Moula TUS",
-      date: "Saturday, 28th November 2026",
-      time: "5:30 PM Assembly | Nikah at Sunset",
-      venue: "Saifee Masjid & Grand Palace Hall",
-      description: "The sacred covenant of Nikah, followed by a traditional Bohra Thaam royal dinner banquet.",
-      iconName: "Heart"
-    },
-    {
-      id: "walima",
-      title: "Walima Reception",
-      subTitle: "Celebrating love, family & new beginnings",
-      date: "Sunday, 29th November 2026",
-      time: "7:30 PM Onwards",
-      venue: "Grand Al-Qasr Imperial Ballroom",
-      description: "An elegant evening of dinner, congratulations, and fond memories as we welcome our guests.",
-      iconName: "Crown"
+      time: "Dinner",
+      venue: "Venue to be announced",
+      description: "The grand centerpiece of our celebrations — an exquisite evening of royal Bohra hospitality, festive banquet dinner, and solemn blessings for the couple.",
+      iconName: "Crown",
+      isMainEvent: true
     }
   ],
   venue: {
@@ -135,6 +157,6 @@ export const weddingData: WeddingConfig = {
     title: "Kudmayi",
     movie: "Rocky Aur Rani Kii Prem Kahaani",
     src: "/audio/kudmayi.mp3",
-    startOffsetSeconds: 18
+    startOffsetSeconds: 16
   }
 };
