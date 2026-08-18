@@ -13,6 +13,7 @@ import { VenueLocation } from './components/VenueLocation';
 // import { RSVPForm } from './components/RSVPForm';
 import { QuranicBlessing } from './components/QuranicBlessing';
 import { ClosingInvitation } from './components/ClosingInvitation';
+import { Analytics } from '@vercel/analytics/react';
 
 export function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -62,6 +63,7 @@ export function App() {
 
         {/* 10. Closing Invitation & Thank You Section */}
         <ClosingInvitation />
+        <Analytics />
       </div>
     </AudioProvider>
   );
