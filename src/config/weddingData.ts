@@ -71,8 +71,8 @@ export const weddingData: WeddingConfig = {
   hijriDateDisplay: "18th Jamadal Ukhra 1448 H",
   bismillahArabic: "بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ",
   nikahHeadlineArabic: "بَارَكَ اللهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ",
-  nikahStatement: "Nikah performed by Moula TUS",
-  nikahLocation: "Saifee Mahal • Mumbai",
+  nikahStatement: "Nikah performed on the hands of Moula TUS",
+  nikahLocation: "Khandala",
   nikahShortBlessing: "A blessed beginning, under the Du'a and Raza Mubarak of Moula TUS.",
   nikahImage: "/images/nikah.jpeg",
   formalInvitationText: "Together with their families, Mr. & Mrs. Mustafa Kagal and Mr. & Mrs. Zulfiqar Sodawala cordially request the honor of your gracious presence to celebrate the Wedding of their beloved children.",
@@ -126,7 +126,7 @@ export const weddingData: WeddingConfig = {
       date: "Friday, 27th November 2026",
       time: "Dinner",
       venue: "Venue to be announced",
-      description: "The grand centerpiece of our celebrations — an exquisite evening of royal Bohra hospitality, festive banquet dinner, and solemn blessings for the couple.",
+      description: "The grand centerpiece of our celebrations — an exquisite evening of royal hospitality, festive banquet dinner, and solemn blessings for the couple.",
       iconName: "Crown",
       isMainEvent: true
     }
