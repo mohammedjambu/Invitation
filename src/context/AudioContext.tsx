@@ -36,7 +36,7 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     // Attempt browser autoplay on load if permitted
     const attemptAutoplay = async () => {
       try {
-        if (audio.currentTime < startOffsetSeconds) {
+        if (startOffsetSeconds > 0 && audio.currentTime < startOffsetSeconds) {
           audio.currentTime = startOffsetSeconds;
         }
         await audio.play();
@@ -52,7 +52,7 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     // Fallback: Start playback on first user gesture anywhere on screen
     const handleFirstUserInteraction = () => {
       if (!hasUserStartedRef.current && audioRef.current) {
-        if (audioRef.current.currentTime < startOffsetSeconds) {
+        if (startOffsetSeconds > 0 && audioRef.current.currentTime < startOffsetSeconds) {
           audioRef.current.currentTime = startOffsetSeconds;
         }
         audioRef.current.play().then(() => {
@@ -80,7 +80,7 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   const startAudio = () => {
     if (audioRef.current) {
-      if (audioRef.current.currentTime < startOffsetSeconds) {
+      if (startOffsetSeconds > 0 && audioRef.current.currentTime < startOffsetSeconds) {
         audioRef.current.currentTime = startOffsetSeconds;
       }
       audioRef.current.play().then(() => {

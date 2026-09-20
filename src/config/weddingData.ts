@@ -158,8 +158,8 @@ export const weddingData: WeddingConfig = {
     image: "/images/couple3.jpeg"
   },
   backgroundAudio: {
-    title: "Kudmayi",
-    movie: "Rocky Aur Rani Kii Prem Kahaani",
+    title: "Madeh",
+    movie: "Dawoodi Bohra Madeh",
     src: "/audio/madeh.mp3",
     startOffsetSeconds: 0
   }
