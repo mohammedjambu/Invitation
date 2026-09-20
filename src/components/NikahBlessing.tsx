@@ -115,7 +115,7 @@ export const NikahBlessing: React.FC = () => {
               <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-[#FFFDF9]/95 backdrop-blur-md px-5 py-2 rounded-full border border-[#B89A68]/40 shadow-md flex items-center gap-2.5 text-[#8D7047] whitespace-nowrap z-10">
                 <DawoodiBohraStarPattern size={14} className="text-[#B89A68]" />
                 <span className="font-serif-luxury text-xs tracking-widest uppercase font-semibold">
-                  NIKAH · {weddingData.hijriDateDisplay}
+                  NIKAH · {weddingData.hijriNikahDateDisplay || weddingData.hijriDateDisplay}
                 </span>
                 <DawoodiBohraStarPattern size={14} className="text-[#B89A68]" />
               </div>

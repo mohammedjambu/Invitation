@@ -51,15 +51,15 @@ export function App() {
         <Countdown />
 
         {/* 7. Royal Venue & Location Section */}
-        <div id="venue-section">
+        {/* <div id="venue-section">
           <VenueLocation />
-        </div>
+        </div> */}
 
         {/* 8. Response Card / RSVP Section */}
         {/* <RSVPForm /> */}
 
         {/* 9. Quranic Verse & Spiritual Blessing Section */}
-        <QuranicBlessing />
+        {/* <QuranicBlessing /> */}
 
         {/* 10. Closing Invitation & Thank You Section */}
         <ClosingInvitation />

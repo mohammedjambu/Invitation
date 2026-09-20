@@ -19,7 +19,8 @@ export interface WeddingConfig {
   monogram: string;
   weddingDateISO: string; // ISO 8601 string for countdown
   dateDisplay: string;
-  hijriDateDisplay: string;
+  hijriDateDisplay: string; // Marriage Hijri Date
+  hijriNikahDateDisplay?: string; // Nikah Hijri Date
   bismillahArabic: string;
   nikahHeadlineArabic: string;
   nikahStatement: string;
@@ -68,7 +69,8 @@ export const weddingData: WeddingConfig = {
   monogram: "M & N",
   weddingDateISO: "2026-11-27T17:30:00+04:00",
   dateDisplay: "Friday, 27th November 2026",
-  hijriDateDisplay: "18th Jamadal Ukhra 1448 H",
+  hijriDateDisplay: "18th Jamadal Ukhra 1448H",
+  hijriNikahDateDisplay: "7th Shawwal al Mukarram 1447H",
   bismillahArabic: "بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ",
   nikahHeadlineArabic: "بَارَكَ اللهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ",
   nikahStatement: "Nikah performed on the hands of Moula TUS",
@@ -80,23 +82,13 @@ export const weddingData: WeddingConfig = {
   brideParents: "Daughter of Mr. Zulfiqar & Mrs. Mariyam Sodawala",
   events: [
     {
-      id: "maandvo",
-      title: "Maandvo",
-      subTitle: "Auspicious Ceremonial Initiation",
-      date: "Monday, 23rd November 2026",
-      time: "Evening",
-      venue: "Venue to be announced",
-      description: "An auspicious gathering filled with traditional prayers, warmth, and sacred blessings to mark the commencement of our wedding festivities.",
-      iconName: "Moon"
-    },
-    {
       id: "shitabi",
       title: "Shitabi",
       subTitle: "Sacred Congregation & Morning Gratitude",
       date: "Tuesday, 24th November 2026",
       time: "Morning",
-      venue: "Venue to be announced",
-      description: "A serene morning gathering of prayer, gratitude, and joyful fellowship with family and cherished guests.",
+      venue: "Husaini Hall, Sujai Bagh",
+      description: "",
       iconName: "Sun"
     },
     {
@@ -105,8 +97,8 @@ export const weddingData: WeddingConfig = {
       subTitle: "Henna Artistry & Joyful Melodies",
       date: "Wednesday, 25th November 2026",
       time: "Morning",
-      venue: "Venue to be announced",
-      description: "A vibrant morning celebrating delicate henna artistry, rich traditions, music, and cherished family moments.",
+      venue: "AD Tower, Godi Road",
+      description: "",
       iconName: "Flower2"
     },
     {
@@ -115,20 +107,30 @@ export const weddingData: WeddingConfig = {
       subTitle: "Maternal Blessings & Family Gathering",
       date: "Thursday, 26th November 2026",
       time: "Afternoon",
-      venue: "Venue to be announced",
-      description: "A heartwarming afternoon ceremony honoring maternal heritage, welcoming traditional gifts, and celebrating family togetherness.",
+      venue: "JiruWala Farmhouse",
+      description: "",
       iconName: "Users"
     },
     {
       id: "zafaf-jaman",
       title: "Zafaf Jaman",
-      subTitle: "Bride's Main Celebration & Gala Banquet",
+      subTitle: "Bride's Main Celebration",
       date: "Friday, 27th November 2026",
       time: "Dinner",
-      venue: "Venue to be announced",
-      description: "The grand centerpiece of our celebrations — an exquisite evening of royal hospitality, festive banquet dinner, and solemn blessings for the couple.",
+      venue: "Batul Hall",
+      description: "",
       iconName: "Crown",
       isMainEvent: true
+    },
+    {
+      id: "nikah-jaman",
+      title: "Nikah Jaman",
+      subTitle: "Grand Reception & Festive Dinner",
+      date: "Saturday, 28th November 2026",
+      time: "Dinner",
+      venue: "Ahmedabad",
+      description: "",
+      iconName: "Moon"
     }
   ],
   venue: {
