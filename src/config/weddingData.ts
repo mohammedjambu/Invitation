@@ -17,6 +17,7 @@ export interface WeddingConfig {
   groomName: string;
   groomFullName: string;
   monogram: string;
+  hashtag?: string;
   weddingDateISO: string; // ISO 8601 string for countdown
   dateDisplay: string;
   hijriDateDisplay: string; // Marriage Hijri Date
@@ -67,6 +68,7 @@ export const weddingData: WeddingConfig = {
   groomName: "Nuruddin",
   groomFullName: "Nuruddin Kagalwala",
   monogram: "M & N",
+  hashtag: "#NurrKiHurr",
   weddingDateISO: "2026-11-27T17:30:00+04:00",
   dateDisplay: "Friday, 27th November 2026",
   hijriDateDisplay: "18th Jamadal Ukhra 1448H",

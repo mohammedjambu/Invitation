@@ -8,7 +8,7 @@ import {
   GeometricWatermarkPattern,
   CornerFiligree
 } from './Ornament';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Sparkles } from 'lucide-react';
 
 export const HeroInvitation: React.FC = () => {
   const { scrollY } = useScroll();
@@ -189,29 +189,31 @@ export const HeroInvitation: React.FC = () => {
             </div>
 
             {/* STAGE 7: Royal Venue & Location */}
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.9, duration: 0.8 }}
-              className="mb-4 sm:mb-6"
+              className="mb-3"
             >
               <p className="font-sans-luxury text-[11px] sm:text-xs text-[#6B5B49] uppercase tracking-[0.2em] font-medium">
                 {weddingData.venue.name} — {weddingData.venue.city}
               </p>
-            </motion.div>
-
-            {/* STAGE 9: Nikah Status Badge (Ceremonial Gold Foil Seal) */}
-            {/* <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 2.5, duration: 0.8 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFFDF9]/90 border border-[#B89A68]/50 shadow-sm text-[#8D7047]"
-            >
-              <DawoodiBohraStarPattern size={14} className="text-[#B89A68]" />
-              <span className="font-serif-luxury italic text-xs sm:text-sm font-medium tracking-wide">
-                {weddingData.nikahStatement}
-              </span>
             </motion.div> */}
+
+            {/* STAGE 8: Official Wedding Hashtag */}
+            {weddingData.hashtag && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 2.1, duration: 0.8 }}
+                className="mb-4"
+              >
+                <span className="inline-flex items-center gap-1.5 px-4 py-1 rounded-full bg-[#F5E8D7]/80 border border-[#B89A68]/40 shadow-xs text-[#8D7047] font-serif-luxury font-semibold text-xs sm:text-sm tracking-widest">
+                  <Sparkles size={13} className="text-[#B89A68]" />
+                  {weddingData.hashtag}
+                </span>
+              </motion.div>
+            )}
 
           </div>
         </motion.div>

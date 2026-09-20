@@ -33,9 +33,17 @@ export const ClosingInvitation: React.FC = () => {
 
           <ArabesqueDivider className="my-4" />
 
-          <p className="font-serif-luxury text-sm tracking-widest text-[#8D7047] font-semibold uppercase">
+          {/* <p className="font-serif-luxury text-sm tracking-widest text-[#8D7047] font-semibold uppercase">
             {weddingData.closingFamilies}
-          </p>
+          </p> */}
+
+          {weddingData.hashtag && (
+            <div className="pt-2">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-[#FFFDF9]/80 border border-[#B89A68]/40 shadow-xs text-[#8D7047] font-serif-luxury font-semibold text-xs sm:text-sm tracking-widest">
+                {weddingData.hashtag}
+              </span>
+            </div>
+          )}
         </motion.div>
 
         {/* Minimal Scroll To Top Button */}
@@ -49,9 +57,9 @@ export const ClosingInvitation: React.FC = () => {
         </div>
 
         {/* Ultra-Minimal Footer Note */}
-        <div className="pt-6 text-[11px] font-sans-luxury text-[#8D7047]/60 tracking-wider">
+        {/* <div className="pt-6 text-[11px] font-sans-luxury text-[#8D7047]/60 tracking-wider">
           {weddingData.dateDisplay}
-        </div>
+        </div> */}
       </div>
     </footer>
   );

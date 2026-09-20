@@ -93,7 +93,12 @@ export const NavbarNavigation: React.FC = () => {
               <span className="font-script-luxury text-2xl text-[#8D7047] block">
                 {weddingData.monogram}
               </span>
-              <span className="font-serif-luxury text-[10px] tracking-widest uppercase text-[#6B5B49]">
+              {weddingData.hashtag && (
+                <span className="font-serif-luxury text-[11px] tracking-widest text-[#8D7047] font-semibold block">
+                  {weddingData.hashtag}
+                </span>
+              )}
+              <span className="font-serif-luxury text-[9px] tracking-widest uppercase text-[#6B5B49] block mt-0.5">
                 Invitation Menu
               </span>
             </div>
