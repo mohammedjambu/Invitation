@@ -2,6 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { weddingData } from '../config/weddingData';
 import { ArabesqueDivider, IslamicStarSymbol } from './Ornament';
+import { Sparkles } from 'lucide-react';
+
 
 export const CoupleStory: React.FC = () => {
   return (
@@ -77,6 +79,19 @@ export const CoupleStory: React.FC = () => {
                 {weddingData.brideName} & {weddingData.groomName}
               </span>
             </div>
+            {weddingData.hashtag && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 2.1, duration: 0.8 }}
+                className="mb-4"
+              >
+                <span className="inline-flex items-center gap-1.5 px-4 py-1 rounded-full bg-[#F5E8D7]/80 border border-[#B89A68]/40 shadow-xs text-[#8D7047] font-serif-luxury font-semibold text-xs sm:text-sm tracking-widest">
+                  <Sparkles size={13} className="text-[#B89A68]" />
+                  {weddingData.hashtag}
+                </span>
+              </motion.div>
+            )}
           </motion.div>
 
         </div>

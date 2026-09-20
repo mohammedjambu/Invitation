@@ -75,9 +75,9 @@ export const weddingData: WeddingConfig = {
   hijriNikahDateDisplay: "7th Shawwal al Mukarram 1447H",
   bismillahArabic: "بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ",
   nikahHeadlineArabic: "بَارَكَ اللهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ",
-  nikahStatement: "Nikah performed on the hands of Moula TUS",
+  nikahStatement: "Nikah performed on the hands of Aqa Moula TUS",
   nikahLocation: "Khandala",
-  nikahShortBlessing: "A blessed beginning, under the Du'a and Raza Mubarak of Moula TUS.",
+  nikahShortBlessing: "A blessed beginning, under the Du'a and Raza Mubarak of Aqa Moula TUS.",
   nikahImage: "/images/nikah.jpeg",
   formalInvitationText: "Together with their families, Mr. & Mrs. Mustafa Kagal and Mr. & Mrs. Zulfiqar Sodawala cordially request the honor of your gracious presence to celebrate the Wedding of their beloved children.",
   groomParents: "Son of Mr. Mustafa & Mrs. Fatema Kagalwala",
@@ -128,7 +128,7 @@ export const weddingData: WeddingConfig = {
       id: "nikah-jaman",
       title: "Nikah Jaman",
       subTitle: "Grand Reception & Festive Dinner",
-      date: "Saturday, 28th November 2026",
+      date: "Saturday, 29th November 2026",
       time: "Dinner",
       venue: "Ahmedabad",
       description: "",
@@ -152,15 +152,15 @@ export const weddingData: WeddingConfig = {
   closingMessage: "We eagerly await the pleasure of your company, your blessings, and your prayers as we embark on this sacred journey of togetherness.",
   closingFamilies: "The Sodawala Family",
   coupleStory: {
-    title: "A Covenant of Devotion & Grace",
-    quote: "“Two souls united under divine grace, embarking on a lifelong path of faith, love, and harmony.”",
-    text: "Bound by shared heritage, deep affection, and the divine blessings of Moula TUS, Mariya & Nuruddin invite you to share in the beginning of their new chapter.",
-    image: "/images/couple.jpeg"
+    title: "IT WAS ALWAYS THE LITTLE THINGS",
+    quote: "“Not one big moment, but a thousand little ones brought us here.”",
+    text: "By the grace of Aqa Moula TUS , we begin the rest of our story together.",
+    image: "/images/couple3.jpeg"
   },
   backgroundAudio: {
     title: "Kudmayi",
     movie: "Rocky Aur Rani Kii Prem Kahaani",
-    src: "/audio/kudmayi.mp3",
-    startOffsetSeconds: 16
+    src: "/audio/madeh.mp3",
+    startOffsetSeconds: 0
   }
 };
