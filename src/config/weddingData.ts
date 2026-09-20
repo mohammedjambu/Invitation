@@ -158,9 +158,9 @@ export const weddingData: WeddingConfig = {
     image: "/images/couple3.jpeg"
   },
   backgroundAudio: {
-    title: "Madeh",
-    movie: "Dawoodi Bohra Madeh",
-    src: "/audio/madeh.mp3",
-    startOffsetSeconds: 0
+    title: "Maria Maria",
+    movie: "Partner",
+    src: "/audio/maria_maria.mp3",
+    startOffsetSeconds: 6
   }
 };
