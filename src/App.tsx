@@ -9,9 +9,9 @@ import { FormalInvitation } from './components/FormalInvitation';
 import { CoupleStory } from './components/CoupleStory';
 import { EventsTimeline } from './components/EventsTimeline';
 import { Countdown } from './components/Countdown';
-import { VenueLocation } from './components/VenueLocation';
+// import { VenueLocation } from './components/VenueLocation';
 // import { RSVPForm } from './components/RSVPForm';
-import { QuranicBlessing } from './components/QuranicBlessing';
+// import { QuranicBlessing } from './components/QuranicBlessing';
 import { ClosingInvitation } from './components/ClosingInvitation';
 import { Analytics } from '@vercel/analytics/react';
 
