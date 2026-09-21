@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Volume2, VolumeX, Menu, X, Heart, Calendar, MapPin, Music } from 'lucide-react';
+import { Volume2, VolumeX, Menu, X, Heart, Calendar, Music } from 'lucide-react';
 import { weddingData } from '../config/weddingData';
 import { useAudio } from '../context/AudioContext';
 
