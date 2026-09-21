@@ -24,7 +24,7 @@ export const NavbarNavigation: React.FC = () => {
   const navLinks = [
     { name: 'Nikah Blessing', href: '#nikah-section', icon: Heart },
     { name: 'Events Schedule', href: '#events-section', icon: Calendar },
-    { name: 'Venue & Map', href: '#venue-section', icon: MapPin },
+    // { name: 'Venue & Map', href: '#venue-section', icon: MapPin },
     // { name: 'RSVP Card', href: '#rsvp-section', icon: Send }
   ];
 

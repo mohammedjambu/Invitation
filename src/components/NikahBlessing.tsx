@@ -112,12 +112,12 @@ export const NikahBlessing: React.FC = () => {
               </div>
 
               {/* Keepsake Ribbon Tag */}
-              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-[#FFFDF9]/95 backdrop-blur-md px-3 py-2 rounded-full border border-[#B89A68]/40 shadow-md flex items-center gap-2 text-[#8D7047] whitespace-pre z-10">
-                <DawoodiBohraStarPattern size={14} className="text-[#B89A68]" />
-                <span className="font-serif-luxury text-xs tracking-widest uppercase font-semibold">
+              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-[#FFFDF9]/95 backdrop-blur-md px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-[#B89A68]/40 shadow-md flex items-center justify-center gap-1.5 sm:gap-2 text-[#8D7047] max-w-[95%] sm:max-w-[90%] z-10">
+                <DawoodiBohraStarPattern size={12} className="text-[#B89A68] shrink-0" />
+                <span className="font-serif-luxury text-[10px] sm:text-xs tracking-wider sm:tracking-widest uppercase font-semibold truncate">
                   NIKAH · {weddingData.hijriNikahDateDisplay || weddingData.hijriDateDisplay}
                 </span>
-                <DawoodiBohraStarPattern size={14} className="text-[#B89A68]" />
+                <DawoodiBohraStarPattern size={12} className="text-[#B89A68] shrink-0" />
               </div>
             </div>
           </motion.div>

@@ -128,7 +128,7 @@ export const weddingData: WeddingConfig = {
       id: "nikah-jaman",
       title: "Nikah Jaman",
       subTitle: "Grand Reception & Festive Dinner",
-      date: "Saturday, 29th November 2026",
+      date: "Sunday, 29th November 2026",
       time: "Dinner",
       venue: "Ahmedabad",
       description: "",
@@ -158,9 +158,9 @@ export const weddingData: WeddingConfig = {
     image: "/images/couple3.jpeg"
   },
   backgroundAudio: {
-    title: "Maria Maria",
-    movie: "Partner",
-    src: "/audio/maria_maria.mp3",
-    startOffsetSeconds: 6
+    title: "Madeh",
+    movie: "Dawoodi Bohra Madeh",
+    src: "/audio/madeh.mp3",
+    startOffsetSeconds: 0
   }
 };
