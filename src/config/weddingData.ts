@@ -68,7 +68,7 @@ export const weddingData: WeddingConfig = {
   groomName: "Nuruddin",
   groomFullName: "Nuruddin Kagalwala",
   monogram: "M & N",
-  hashtag: "#NurrKiHurr",
+  hashtag: "#NoorKiHoor",
   weddingDateISO: "2026-11-27T17:30:00+04:00",
   dateDisplay: "Friday, 27th November 2026",
   hijriDateDisplay: "18th Jamadal Ukhra 1448H",
@@ -79,7 +79,7 @@ export const weddingData: WeddingConfig = {
   nikahLocation: "Khandala",
   nikahShortBlessing: "A blessed beginning, under the Du'a and Raza Mubarak of Aqa Moula TUS.",
   nikahImage: "/images/nikah.jpeg",
-  formalInvitationText: "Together with their families, Mr. & Mrs. Mustafa Kagal and Mr. & Mrs. Zulfiqar Sodawala cordially request the honor of your gracious presence to celebrate the Wedding of their beloved children.",
+  formalInvitationText: "With our Nikah blessed by Aqa Moula TUS, we now look forward to celebrating this joyous occasion surrounded by those closest to our hearts.",
   groomParents: "Son of Mr. Mustafa & Mrs. Fatema Kagalwala",
   brideParents: "Daughter of Mr. Zulfiqar & Mrs. Mariyam Sodawala",
   events: [
