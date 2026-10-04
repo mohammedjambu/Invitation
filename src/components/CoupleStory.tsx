@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, useInView, useScroll, useTransform } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { weddingData } from '../config/weddingData';
 import { DawoodiBohraStarPattern, GeometricWatermarkPattern, CornerFiligree } from './Ornament';
 import { PREMIUM_EASE } from '../utils/motion';
@@ -7,19 +7,15 @@ import { PREMIUM_EASE } from '../utils/motion';
 export const CoupleStory: React.FC = () => {
   const coupleStoryRef = useRef<HTMLElement>(null);
   
-  // Dedicated viewport trigger: animation starts strictly when Couple Story enters 20% of viewport on scroll
-  const isInView = useInView(coupleStoryRef, { amount: 0.2 });
+  // Dedicated viewport observer: triggers strictly when Couple Story content is clearly in view on screen
+  const isInView = useInView(coupleStoryRef, {
+    amount: 0.35,
+    margin: '-50px 0px -50px 0px'
+  });
 
   const hasTriggeredRef = useRef(false);
   const [phase, setPhase] = useState(0);
   const [hashtagCharCount, setHashtagCharCount] = useState(0);
-
-  // Subtle Parallax effect tied to scroll when section is visible
-  const { scrollYProgress } = useScroll({
-    target: coupleStoryRef,
-    offset: ['start end', 'end start']
-  });
-  const photoParallaxY = useTransform(scrollYProgress, [0, 1], [10, -10]);
 
   const hashtagText = weddingData.hashtag || '#NoorKiHoor';
 
@@ -42,47 +38,44 @@ export const CoupleStory: React.FC = () => {
     // Phase 1: "A LITTLE ABOUT US" Label & Top Star Ornament (t = 0ms)
     setPhase(1);
 
-    // Phase 2: Photograph "Memory Developing" Reveal (t = 250ms)
-    timers.push(setTimeout(() => setPhase(2), 250));
+    // Phase 2: Photograph "Memory Developing" Reveal (t = 200ms)
+    timers.push(setTimeout(() => setPhase(2), 200));
 
-    // Phase 3: Main Editorial Headline Line 1 ("IT WAS ALWAYS") (t = 650ms - overlaps elegantly before photo finishes)
-    timers.push(setTimeout(() => setPhase(3), 650));
+    // Phase 3: Main Editorial Headline Line 1 ("IT WAS ALWAYS") (t = 550ms)
+    timers.push(setTimeout(() => setPhase(3), 550));
 
-    // Phase 4: Main Editorial Headline Line 2 ("THE LITTLE") (t = 820ms)
-    timers.push(setTimeout(() => setPhase(4), 820));
+    // Phase 4: Main Editorial Headline Line 2 ("THE LITTLE") (t = 700ms)
+    timers.push(setTimeout(() => setPhase(4), 700));
 
-    // Phase 5: Main Editorial Headline Line 3 ("THINGS") (t = 990ms)
-    timers.push(setTimeout(() => setPhase(5), 990));
+    // Phase 5: Main Editorial Headline Line 3 ("THINGS") (t = 850ms)
+    timers.push(setTimeout(() => setPhase(5), 850));
 
-    // Phase 6: Decorative Star Divider under headline (t = 1350ms)
-    timers.push(setTimeout(() => setPhase(6), 1350));
+    // Phase 6: Decorative Star Divider under headline (t = 1150ms)
+    timers.push(setTimeout(() => setPhase(6), 1150));
 
-    // Phase 7: Personal Story Quote ("Not one big moment...") (t = 1700ms)
-    timers.push(setTimeout(() => setPhase(7), 1700));
+    // Phase 7: Personal Story Quote ("Some stories are written...") (t = 1450ms)
+    timers.push(setTimeout(() => setPhase(7), 1450));
 
-    // Phase 8: Personal Story Sentence (Aqa Moula TUS statement) (t = 2100ms)
-    timers.push(setTimeout(() => setPhase(8), 2100));
+    // Phase 8: Personal Story Sentence (Aqa Moula TUS statement) (t = 1800ms)
+    timers.push(setTimeout(() => setPhase(8), 1800));
 
-    // Phase 9: Ornamental Memory Mark (t = 2500ms)
-    timers.push(setTimeout(() => setPhase(9), 2500));
+    // Phase 9: Ornamental Memory Mark (t = 2150ms)
+    timers.push(setTimeout(() => setPhase(9), 2150));
 
-    // Phase 10: Hashtag Script Signature Typewriter Ink Reveal (t = 2850ms)
+    // Phase 10: Hashtag Script Signature Typewriter Ink Reveal (t = 2450ms)
     timers.push(setTimeout(() => {
       setPhase(10);
       for (let i = 1; i <= hashtagText.length; i++) {
         timers.push(setTimeout(() => {
           setHashtagCharCount(i);
-        }, i * 110));
+        }, i * 100));
       }
-    }, 2850));
+    }, 2450));
 
-    // Phase 11: Hashtag Crest Badge Reveal (t = 3500ms)
-    timers.push(setTimeout(() => setPhase(11), 3500));
-
-    // Complete State (t = 4000ms)
+    // Complete State (t = 3600ms)
     timers.push(setTimeout(() => {
       setPhase(12);
-    }, 4000));
+    }, 3600));
 
     return () => {
       timers.forEach(t => clearTimeout(t));
@@ -129,13 +122,12 @@ export const CoupleStory: React.FC = () => {
           </span>
         </motion.div>
 
-        {/* PHASE 2: EDITORIAL PORTRAIT PHOTOGRAPH — MEMORY DEVELOPING REVEAL + SUBTLE PARALLAX */}
+        {/* PHASE 2: EDITORIAL PORTRAIT PHOTOGRAPH — MEMORY DEVELOPING REVEAL */}
         <div className="my-3 sm:my-5 relative group">
           <motion.div
-            style={{ y: photoParallaxY }}
             initial={{
               opacity: 0,
-              scale: 1.06,
+              scale: 1.05,
               filter: 'blur(5px)',
               clipPath: 'inset(6% 4% 6% 4%)'
             }}
@@ -149,13 +141,13 @@ export const CoupleStory: React.FC = () => {
                   }
                 : {
                     opacity: 0,
-                    scale: 1.06,
+                    scale: 1.05,
                     filter: 'blur(5px)',
                     clipPath: 'inset(6% 4% 6% 4%)'
                   }
             }
-            transition={{ duration: 1.4, ease: PREMIUM_EASE }}
-            className="relative w-[260px] sm:w-[320px] md:w-[340px] aspect-[3/4] mx-auto p-2.5 bg-[#FAF4EA] rounded-t-[140px] sm:rounded-t-[170px] rounded-b-2xl border border-[#B89A68]/45 shadow-[0_20px_50px_-10px_rgba(100,75,40,0.18),0_0_0_1px_rgba(184,154,104,0.3)]"
+            transition={{ duration: 1.3, ease: PREMIUM_EASE }}
+            className="relative w-[260px] sm:w-[320px] md:w-[340px] aspect-[3/4] mx-auto p-2.5 bg-[#FAF4EA] rounded-t-[140px] sm:rounded-t-[170px] rounded-b-2xl border border-[#B89A68]/45 shadow-[0_20px_50px_-10px_rgba(100,75,40,0.18),0_0_0_1px_rgba(184,154,104,0.3)] transform-gpu"
           >
             {/* Inner Fine Gold Foil Arched Border */}
             <div className="absolute inset-4 rounded-t-[125px] sm:rounded-t-[155px] rounded-b-xl border border-[#D8BE94]/75 pointer-events-none z-20" />
@@ -248,14 +240,10 @@ export const CoupleStory: React.FC = () => {
           className="my-2 sm:my-4 max-w-lg mx-auto px-2"
         >
           <p className="font-serif-luxury text-base sm:text-lg md:text-xl text-[#4A381E] leading-relaxed font-normal">
-            
-              <>
-                "Some stories are written in grand moments. <br />
-                Ours has been shaped by the quiet ones — <br className="hidden sm:inline" />
-                the conversations, the smiles, the families,<br className="hidden sm:inline" />
-                and all the little moments that brought us here."
-              </>
-            
+            "Some stories are written in grand moments. <br />
+            Ours has been shaped by the quiet ones — <br className="hidden sm:inline" />
+            the conversations, the smiles, the families,<br className="hidden sm:inline" />
+            and all the little moments that brought us here."
           </p>
         </motion.div>
 
@@ -267,11 +255,8 @@ export const CoupleStory: React.FC = () => {
           className="mt-6 sm:mt-6 mb-6 max-w-md mx-auto px-2"
         >
           <p className="font-serif-luxury italic text-sm sm:text-base md:text-base text-[#6D522B] font-semibold leading-relaxed">
-              <>
-                "With the Dua and Raza Mubarak of Aqa Moula TUS, <br />
-                we look forward to write the next chapter together."
-              </>
-            
+            "With the Dua and Raza Mubarak of Aqa Moula TUS, <br />
+            we look forward to write the next chapter together."
           </p>
         </motion.div>
 
@@ -287,7 +272,7 @@ export const CoupleStory: React.FC = () => {
           <span className="h-[0.5px] w-6 bg-[#B89A68]/40" />
         </motion.div>
 
-        {/* PHASE 10: HASHTAG SCRIPT SIGNATURE INK REVEAL (INSTEAD OF BRIDE & GROOM NAMES) */}
+        {/* PHASE 10: HASHTAG SCRIPT SIGNATURE INK REVEAL */}
         <motion.div
           initial={{ opacity: 0, y: 10, filter: 'blur(3px)' }}
           animate={phase >= 10 ? { opacity: 1, y: 0, filter: 'blur(0px)' } : { opacity: 0, y: 10, filter: 'blur(3px)' }}
