@@ -10,9 +10,6 @@ import { FormalInvitation } from './components/FormalInvitation';
 import { CoupleStory } from './components/CoupleStory';
 import { EventsTimeline } from './components/EventsTimeline';
 import { Countdown } from './components/Countdown';
-// import { VenueLocation } from './components/VenueLocation';
-// import { RSVPForm } from './components/RSVPForm';
-// import { QuranicBlessing } from './components/QuranicBlessing';
 import { ClosingInvitation } from './components/ClosingInvitation';
 import { Analytics } from '@vercel/analytics/react';
 
@@ -97,17 +94,6 @@ export function App() {
 
           {/* 6. Editorial Countdown Section */}
           <Countdown />
-
-          {/* 7. Royal Venue & Location Section */}
-          {/* <div id="venue-section">
-            <VenueLocation />
-          </div> */}
-
-          {/* 8. Response Card / RSVP Section */}
-          {/* <RSVPForm /> */}
-
-          {/* 9. Quranic Verse & Spiritual Blessing Section */}
-          {/* <QuranicBlessing /> */}
 
           {/* 10. Closing Invitation & Thank You Section */}
           <ClosingInvitation />

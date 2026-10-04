@@ -88,7 +88,7 @@ export const weddingData: WeddingConfig = {
       title: "Shitabi",
       subTitle: "Sacred Congregation & Morning Gratitude",
       date: "Tuesday, 24th November 2026",
-      time: "Breakfast",
+      time: "Lunch",
       venue: "Husaini Hall, Sujai Bagh",
       description: "",
       iconName: "Sun"
@@ -98,17 +98,17 @@ export const weddingData: WeddingConfig = {
       title: "Mehendi",
       subTitle: "Henna Artistry & Joyful Melodies",
       date: "Wednesday, 25th November 2026",
-      time: "Breakfast",
+      time: "Lunch",
       venue: "AD Tower, Godi Road",
       description: "",
       iconName: "Flower2"
     },
     {
       id: "mosalu",
-      title: "Mosalu",
+      title: "Katho/Mosalu",
       subTitle: "Maternal Blessings & Family Gathering",
       date: "Thursday, 26th November 2026",
-      time: "Lunch",
+      time: "Dinner",
       venue: "JiruWala Farmhouse",
       description: "",
       iconName: "Users"
@@ -155,7 +155,7 @@ export const weddingData: WeddingConfig = {
     title: "IT WAS ALWAYS THE LITTLE THINGS",
     quote: "“Not one big moment, but a thousand little ones brought us here.”",
     text: "By the grace of Aqa Moula TUS , we begin the rest of our story together.",
-    image: "/images/couple3.jpeg"
+    image: "/images/couple.jpeg"
   },
   backgroundAudio: {
     title: "Madeh",

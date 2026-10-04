@@ -135,7 +135,7 @@ export const HeroInvitation: React.FC<HeroInvitationProps> = ({ isUnveiled = tru
       >
         {/* Layer 1: Exact Photorealistic Invitation Card Frame */}
         <img
-          src="/images/hero_invitation_frame.png"
+          src="/images/hero_frame.avif"
           alt="Mariya & Nuruddin Digital Wedding Invitation"
           className="absolute inset-0 w-full h-full object-fill pointer-events-none select-none z-0"
         />
