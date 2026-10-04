@@ -2,6 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { weddingData } from '../config/weddingData';
 import { DawoodiBohraStarPattern, GeometricWatermarkPattern } from './Ornament';
+import {
+  PREMIUM_EASE,
+  SECTION_VIEWPORT,
+  lineRevealX
+} from '../utils/motion';
 
 interface TimeLeft {
   days: number;
@@ -38,13 +43,9 @@ export const Countdown: React.FC = () => {
       }
     };
 
-    // Calculate immediately on mount
     calculateTime();
-
-    // Update timer accurately every second
     const timer = setInterval(calculateTime, 1000);
 
-    // Recalculate immediately when tab becomes active again to prevent stale time
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'visible') {
         calculateTime();
@@ -66,25 +67,74 @@ export const Countdown: React.FC = () => {
     { label: "SECONDS", value: timeLeft.seconds }
   ];
 
-  const containerVariants: Variants = {
-    hidden: { opacity: 0, y: 25 },
+  // Specific scroll-triggered animation variants for Countdown section
+  const countdownContainerVariants: Variants = {
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      y: 0,
       transition: {
-        duration: 1.1,
-        ease: [0.22, 1, 0.36, 1],
-        staggerChildren: 0.12
+        staggerChildren: 0.14,
+        delayChildren: 0.1,
+        ease: PREMIUM_EASE
       }
     }
   };
 
-  const childVariants: Variants = {
-    hidden: { opacity: 0, y: 16 },
+  const eyebrowVariants: Variants = {
+    hidden: { opacity: 0, y: 12 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.85, ease: [0.22, 1, 0.36, 1] }
+      transition: { duration: 0.65, ease: PREMIUM_EASE }
+    }
+  };
+
+  const mainTitleVariants: Variants = {
+    hidden: { opacity: 0, y: 18, filter: 'blur(2px)' },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: 'blur(0px)',
+      transition: { duration: 0.85, ease: PREMIUM_EASE }
+    }
+  };
+
+  const dividerVariants: Variants = {
+    hidden: { opacity: 0, scaleX: 0 },
+    visible: {
+      opacity: 1,
+      scaleX: 1,
+      transition: { duration: 0.65, ease: PREMIUM_EASE }
+    }
+  };
+
+  const gridUnitsContainerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.12,
+        delayChildren: 0.05,
+        ease: PREMIUM_EASE
+      }
+    }
+  };
+
+  const unitItemVariants: Variants = {
+    hidden: { opacity: 0, y: 22 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: PREMIUM_EASE }
+    }
+  };
+
+  const dateConfirmationVariants: Variants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.65, ease: PREMIUM_EASE }
     }
   };
 
@@ -94,48 +144,61 @@ export const Countdown: React.FC = () => {
       <GeometricWatermarkPattern />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-radial from-[#F5E5D3]/50 via-[#FDF9F3]/25 to-transparent rounded-full blur-3xl pointer-events-none z-0" />
 
-      {/* 2. EDITORIAL COUNTDOWN CONTAINER (CARD-FREE PAPER COMPOSITION) */}
+      {/* 2. EDITORIAL COUNTDOWN CONTAINER */}
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: '-60px' }}
-        variants={containerVariants}
+        viewport={SECTION_VIEWPORT}
+        variants={countdownContainerVariants}
         className="max-w-2xl sm:max-w-3xl mx-auto relative z-10 flex flex-col items-center"
       >
-        {/* EYEBROW & SECTION HEADING */}
-        <motion.div variants={childVariants} className="flex flex-col items-center">
-          <div className="flex items-center justify-center gap-2 mb-2 text-[#6D522B]/75">
-            <span className="h-[0.5px] w-8 sm:w-12 bg-[#B89A68]/40" />
-            <DawoodiBohraStarPattern size={14} className="text-[#6D522B]" />
-            <span className="h-[0.5px] w-8 sm:w-12 bg-[#B89A68]/40" />
-          </div>
-          <span className="font-serif-luxury text-xs sm:text-sm tracking-[0.32em] uppercase font-bold text-[#6D522B] block mb-1">
-            THE CELEBRATION BEGINS IN
-          </span>
-          <h2 className="font-serif-luxury text-3xl sm:text-5xl text-[#4A381E] font-normal drop-shadow-xs">
+        {/* STEP 1 & 2: EYEBROW & SECTION HEADING */}
+        <div className="flex flex-col items-center">
+          <motion.div variants={eyebrowVariants} className="flex flex-col items-center">
+            <div className="flex items-center justify-center gap-2 mb-2 text-[#6D522B]/75">
+              <motion.span variants={lineRevealX} className="h-[0.5px] w-8 sm:w-12 bg-[#B89A68]/40 origin-right" />
+              <DawoodiBohraStarPattern size={14} className="text-[#6D522B]" />
+              <motion.span variants={lineRevealX} className="h-[0.5px] w-8 sm:w-12 bg-[#B89A68]/40 origin-left" />
+            </div>
+            <span className="font-serif-luxury text-xs sm:text-sm tracking-[0.32em] uppercase font-bold text-[#6D522B] block mb-1">
+              THE CELEBRATION BEGINS IN
+            </span>
+          </motion.div>
+
+          <motion.h2 variants={mainTitleVariants} className="font-serif-luxury text-3xl sm:text-5xl text-[#4A381E] font-normal drop-shadow-xs">
             Counting the Auspicious Moments
-          </h2>
-        </motion.div>
+          </motion.h2>
+        </div>
 
-        {/* TOP CHAMPAGNE GOLD DIVIDER */}
-        <motion.div variants={childVariants} className="my-6 sm:my-8 flex items-center justify-center gap-3 text-[#B89A68]/60">
-          <span className="h-[0.5px] w-16 sm:w-24 bg-gradient-to-r from-transparent to-[#B89A68]/50" />
+        {/* STEP 3: TOP CHAMPAGNE GOLD DIVIDER */}
+        <motion.div variants={dividerVariants} className="my-6 sm:my-8 flex items-center justify-center gap-3 text-[#B89A68]/60 w-full">
+          <motion.span variants={lineRevealX} className="h-[0.5px] w-16 sm:w-24 bg-gradient-to-r from-transparent to-[#B89A68]/50 origin-right" />
           <span className="text-[7px]">✦</span>
-          <span className="h-[0.5px] w-16 sm:w-24 bg-gradient-to-l from-transparent to-[#B89A68]/50" />
+          <motion.span variants={lineRevealX} className="h-[0.5px] w-16 sm:w-24 bg-gradient-to-l from-transparent to-[#B89A68]/50 origin-left" />
         </motion.div>
 
-        {/* LIVE COUNTDOWN NUMERALS OR POST-EVENT ANNOUNCEMENT */}
-        <motion.div variants={childVariants} className="w-full">
+        {/* STEP 4: LIVE COUNTDOWN NUMERALS (STAGGERED REVEAL: DAYS -> HOURS -> MINUTES -> SECONDS) */}
+        <div className="w-full">
           {timeLeft.isPast ? (
-            <div className="my-6 sm:my-8">
+            <motion.div variants={eyebrowVariants} className="my-6 sm:my-8">
               <h3 className="font-serif-luxury text-3xl sm:text-5xl font-bold text-[#4A381E] tracking-wide uppercase drop-shadow-xs">
                 THE CELEBRATION IS HERE
               </h3>
-            </div>
+            </motion.div>
           ) : (
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 my-4 sm:my-6 items-center w-full max-w-xs sm:max-w-2xl mx-auto">
+            <motion.div
+              variants={gridUnitsContainerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={SECTION_VIEWPORT}
+              className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 my-4 sm:my-6 items-center w-full max-w-xs sm:max-w-2xl mx-auto"
+            >
               {timeUnits.map((item, idx) => (
-                <div key={item.label} className="relative flex flex-col items-center px-2 py-1">
+                <motion.div
+                  key={item.label}
+                  variants={unitItemVariants}
+                  className="relative flex flex-col items-center px-2 py-1"
+                >
                   {/* Subtle vertical divider between columns on desktop */}
                   {idx > 0 && (
                     <div className="hidden sm:block absolute left-0 top-2 bottom-2 w-[1px] bg-gradient-to-b from-transparent via-[#B89A68]/35 to-transparent pointer-events-none" />
@@ -149,7 +212,7 @@ export const Countdown: React.FC = () => {
                         initial={{ opacity: 0, y: 6 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -6 }}
-                        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                        transition={{ duration: 0.35, ease: PREMIUM_EASE }}
                         className="absolute font-serif-luxury text-4xl sm:text-6xl md:text-7xl font-bold text-[#4A381E] tracking-tight drop-shadow-xs tabular-nums"
                       >
                         {String(item.value).padStart(2, '0')}
@@ -160,22 +223,21 @@ export const Countdown: React.FC = () => {
                   <span className="font-serif-luxury text-[10.5px] sm:text-xs font-bold tracking-[0.28em] uppercase text-[#6D522B] mt-1.5 sm:mt-2">
                     {item.label}
                   </span>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           )}
-        </motion.div>
-
+        </div>
 
         {/* BOTTOM CHAMPAGNE GOLD DIVIDER */}
-        <motion.div variants={childVariants} className="my-6 sm:my-8 flex items-center justify-center gap-3 text-[#B89A68]/60">
-          <span className="h-[0.5px] w-16 sm:w-24 bg-gradient-to-r from-transparent to-[#B89A68]/50" />
+        <motion.div variants={dividerVariants} className="my-6 sm:my-8 flex items-center justify-center gap-3 text-[#B89A68]/60 w-full">
+          <motion.span variants={lineRevealX} className="h-[0.5px] w-16 sm:w-24 bg-gradient-to-r from-transparent to-[#B89A68]/50 origin-right" />
           <span className="text-[7px]">✦</span>
-          <span className="h-[0.5px] w-16 sm:w-24 bg-gradient-to-l from-transparent to-[#B89A68]/50" />
+          <motion.span variants={lineRevealX} className="h-[0.5px] w-16 sm:w-24 bg-gradient-to-l from-transparent to-[#B89A68]/50 origin-left" />
         </motion.div>
 
         {/* WEDDING DATE CONFIRMATION ACCENT */}
-        <motion.div variants={childVariants} className="mt-1">
+        <motion.div variants={dateConfirmationVariants} className="mt-1">
           <p className="font-serif-luxury text-xs sm:text-sm font-bold tracking-[0.3em] uppercase text-[#6D522B]">
             FRIDAY · 27 NOVEMBER 2026
           </p>
@@ -187,4 +249,3 @@ export const Countdown: React.FC = () => {
 };
 
 export default Countdown;
-

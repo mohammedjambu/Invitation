@@ -2,31 +2,88 @@ import React from 'react';
 import { motion, type Variants } from 'framer-motion';
 import { weddingData } from '../config/weddingData';
 import { DawoodiBohraStarPattern, GeometricWatermarkPattern } from './Ornament';
+import {
+  PREMIUM_EASE,
+  SECTION_VIEWPORT,
+  lineRevealX
+} from '../utils/motion';
 
 export const ClosingInvitation: React.FC = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const containerVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
+  // Softest, calmest animation sequence for closing the invitation
+  const closingContainerVariants: Variants = {
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      y: 0,
       transition: {
-        duration: 1.1,
-        ease: [0.22, 1, 0.36, 1],
-        staggerChildren: 0.15
+        staggerChildren: 0.22,
+        delayChildren: 0.12,
+        ease: PREMIUM_EASE
       }
     }
   };
 
-  const childVariants: Variants = {
-    hidden: { opacity: 0, y: 12 },
+  const closingOrnamentVariants: Variants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.75,
+        ease: PREMIUM_EASE
+      }
+    }
+  };
+
+  const closingNamesVariants: Variants = {
+    hidden: { opacity: 0, y: 18, filter: 'blur(3px)' },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.85, ease: [0.22, 1, 0.36, 1] }
+      filter: 'blur(0px)',
+      transition: {
+        duration: 1.1,
+        ease: PREMIUM_EASE
+      }
+    }
+  };
+
+  const closingMessageVariants: Variants = {
+    hidden: { opacity: 0, y: 14 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.9,
+        ease: PREMIUM_EASE
+      }
+    }
+  };
+
+  const closingDividerVariants: Variants = {
+    hidden: { opacity: 0, scaleX: 0 },
+    visible: {
+      opacity: 1,
+      scaleX: 1,
+      transition: {
+        duration: 0.8,
+        ease: PREMIUM_EASE
+      }
+    }
+  };
+
+  const backToTopVariants: Variants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.65,
+        ease: PREMIUM_EASE
+      }
     }
   };
 
@@ -40,44 +97,44 @@ export const ClosingInvitation: React.FC = () => {
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: '-60px' }}
-        variants={containerVariants}
+        viewport={SECTION_VIEWPORT}
+        variants={closingContainerVariants}
         className="max-w-xl sm:max-w-2xl mx-auto relative z-10 flex flex-col items-center"
       >
-        {/* TOP REFINED ORNAMENT */}
-        <motion.div variants={childVariants} className="mb-4 flex flex-col items-center">
+        {/* STEP 1: TOP REFINED ORNAMENT */}
+        <motion.div variants={closingOrnamentVariants} className="mb-4 flex flex-col items-center">
           <div className="flex items-center justify-center gap-2 text-[#6D522B]/75">
-            <span className="h-[0.5px] w-8 sm:w-12 bg-[#B89A68]/40" />
+            <motion.span variants={lineRevealX} className="h-[0.5px] w-8 sm:w-12 bg-[#B89A68]/40 origin-right" />
             <DawoodiBohraStarPattern size={14} className="text-[#6D522B]" />
-            <span className="h-[0.5px] w-8 sm:w-12 bg-[#B89A68]/40" />
+            <motion.span variants={lineRevealX} className="h-[0.5px] w-8 sm:w-12 bg-[#B89A68]/40 origin-left" />
           </div>
         </motion.div>
 
-        {/* COUPLE NAMES CENTERPIECE SIGNATURE */}
-        <motion.div variants={childVariants} className="my-2">
+        {/* STEP 2: COUPLE NAMES CENTERPIECE SIGNATURE */}
+        <motion.div variants={closingNamesVariants} className="my-2">
           <h2 className="font-script-luxury text-4xl sm:text-6xl md:text-7xl text-[#6D522B] font-normal leading-tight tracking-normal drop-shadow-xs">
             {weddingData.brideName} & {weddingData.groomName}
           </h2>
         </motion.div>
 
-        {/* PERSONAL CLOSING MESSAGE */}
-        <motion.div variants={childVariants} className="my-6 sm:my-8 max-w-lg mx-auto px-2">
+        {/* STEP 3: PERSONAL CLOSING MESSAGE */}
+        <motion.div variants={closingMessageVariants} className="my-6 sm:my-8 max-w-lg mx-auto px-2">
           <p className="font-serif-luxury text-base sm:text-lg md:text-xl text-[#4A381E] leading-relaxed font-normal">
-            "We would be honoured to have you with us,<br className="hidden sm:inline" />
-            sharing in our joy and blessing this beautiful journey<br className="hidden sm:inline" />
+            "We would be honoured to have you with us, <br className="hidden sm:inline" />
+            sharing in our joy and blessing this beautiful journey <br className="hidden sm:inline" />
             with your duas."
           </p>
         </motion.div>
 
-        {/* FINE ORNAMENTAL DIVIDER */}
-        <motion.div variants={childVariants} className="my-6 sm:my-8 flex items-center justify-center gap-3 text-[#B89A68]/60">
-          <span className="h-[0.5px] w-16 sm:w-24 bg-gradient-to-r from-transparent to-[#B89A68]/50" />
+        {/* STEP 4: FINE ORNAMENTAL DIVIDER */}
+        <motion.div variants={closingDividerVariants} className="my-6 sm:my-8 flex items-center justify-center gap-3 text-[#B89A68]/60 w-full">
+          <motion.span variants={lineRevealX} className="h-[0.5px] w-16 sm:w-24 bg-gradient-to-r from-transparent to-[#B89A68]/50 origin-right" />
           <span className="text-[7px]">✦</span>
-          <span className="h-[0.5px] w-16 sm:w-24 bg-gradient-to-l from-transparent to-[#B89A68]/50" />
+          <motion.span variants={lineRevealX} className="h-[0.5px] w-16 sm:w-24 bg-gradient-to-l from-transparent to-[#B89A68]/50 origin-left" />
         </motion.div>
 
-        {/* BACK TO THE BEGINNING NAVIGATION LINK */}
-        <motion.div variants={childVariants} className="mt-2">
+        {/* STEP 5: BACK TO THE BEGINNING NAVIGATION LINK */}
+        <motion.div variants={backToTopVariants} className="mt-2">
           <button
             onClick={scrollToTop}
             className="font-serif-luxury text-xs sm:text-sm font-bold tracking-[0.3em] uppercase text-[#6D522B] hover:text-[#4A381E] transition-colors cursor-pointer inline-block py-2"
@@ -92,4 +149,3 @@ export const ClosingInvitation: React.FC = () => {
 };
 
 export default ClosingInvitation;
-

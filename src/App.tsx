@@ -68,15 +68,13 @@ export function App() {
 
         {/* Master Content Reveal Wrapper — Smooth Cinematic Entrance as Curtains Part */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, filter: 'blur(12px)' }}
+          initial={{ opacity: 0 }}
           animate={{
-            opacity: isUnveiled || !isLoading ? 1 : 0,
-            scale: isUnveiled || !isLoading ? 1 : 0.95,
-            filter: isUnveiled || !isLoading ? 'blur(0px)' : 'blur(12px)'
+            opacity: isUnveiled || !isLoading ? 1 : 0
           }}
           transition={{
-            duration: 1.8,
-            ease: [0.16, 1, 0.3, 1]
+            duration: 1.2,
+            ease: [0.22, 1, 0.36, 1]
           }}
           className="w-full"
         >

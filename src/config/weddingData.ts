@@ -88,7 +88,7 @@ export const weddingData: WeddingConfig = {
       title: "Shitabi",
       subTitle: "Sacred Congregation & Morning Gratitude",
       date: "Tuesday, 24th November 2026",
-      time: "Morning",
+      time: "Breakfast",
       venue: "Husaini Hall, Sujai Bagh",
       description: "",
       iconName: "Sun"
@@ -98,7 +98,7 @@ export const weddingData: WeddingConfig = {
       title: "Mehendi",
       subTitle: "Henna Artistry & Joyful Melodies",
       date: "Wednesday, 25th November 2026",
-      time: "Morning",
+      time: "Breakfast",
       venue: "AD Tower, Godi Road",
       description: "",
       iconName: "Flower2"
@@ -108,7 +108,7 @@ export const weddingData: WeddingConfig = {
       title: "Mosalu",
       subTitle: "Maternal Blessings & Family Gathering",
       date: "Thursday, 26th November 2026",
-      time: "Afternoon",
+      time: "Lunch",
       venue: "JiruWala Farmhouse",
       description: "",
       iconName: "Users"
