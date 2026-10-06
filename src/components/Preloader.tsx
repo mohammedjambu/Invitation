@@ -37,7 +37,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete, onStartUnveil 
       setStage('exiting');
       setIsDone(true);
       onComplete();
-    }, 1600);
+    }, 2500);
   };
 
   if (isDone) return null;
@@ -50,16 +50,21 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete, onStartUnveil 
         <motion.div
           key="preloader-curtain-overlay"
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, transition: { duration: 0.5, ease: 'easeOut' } }}
+          exit={{ opacity: 0, transition: { duration: 0.8, ease: 'easeOut' } }}
           onClick={handleOpenCurtain}
-          className="fixed inset-0 z-50 overflow-hidden flex items-center justify-center bg-[#FAF5EE] select-none cursor-pointer"
+          className={`fixed inset-0 z-50 overflow-hidden flex items-center justify-center bg-transparent select-none ${isOpening ? 'pointer-events-none' : 'cursor-pointer'}`}
         >
           {/* ========================================================= */}
           {/* BACKGROUND AMBIENT REVEAL LIGHT (Warm Champagne Glow)     */}
           {/* ========================================================= */}
-          <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-0">
+          <motion.div
+            initial={{ opacity: 1 }}
+            animate={{ opacity: isOpening ? 0 : 1 }}
+            transition={{ duration: 1.5, ease: 'easeOut' }}
+            className="absolute inset-0 pointer-events-none flex items-center justify-center z-0"
+          >
             <div className="w-[700px] h-[700px] rounded-full bg-[radial-gradient(circle_at_center,rgba(245,232,215,0.85)_0%,rgba(216,190,148,0.35)_45%,transparent_75%)] filter blur-3xl transform scale-125" />
-          </div>
+          </motion.div>
 
           {/* ========================================================= */}
           {/* TOP ROYAL FESTOON & SWAG VALANCE HEADER (Curved Drapery)  */}
@@ -71,7 +76,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete, onStartUnveil 
               y: isOpening ? '-105%' : 0,
               opacity: isOpening ? 0 : 1
             }}
-            transition={{ duration: 1.4, ease: [0.76, 0, 0.24, 1] }}
+            transition={{ duration: 2.2, ease: [0.25, 1, 0.35, 1] }}
             className="absolute top-0 left-0 right-0 z-30 pointer-events-none w-full h-32 sm:h-48 md:h-56 filter drop-shadow-xl overflow-visible"
           >
             <svg
@@ -220,7 +225,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete, onStartUnveil 
           <motion.div
             initial={{ x: '0%' }}
             animate={{ x: isOpening ? '-102%' : '0%' }}
-            transition={{ duration: 1.5, ease: [0.76, 0, 0.24, 1] }}
+            transition={{ duration: 2.4, ease: [0.25, 1, 0.35, 1] }}
             className="absolute left-0 top-0 bottom-0 w-[51.5%] z-20 shadow-[20px_0_45px_rgba(100,75,40,0.25)] overflow-hidden bg-champagne-curtain transform-gpu"
           >
             {/* Vertical Silk Drape Folds Pattern */}
@@ -274,7 +279,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete, onStartUnveil 
           <motion.div
             initial={{ x: '0%' }}
             animate={{ x: isOpening ? '102%' : '0%' }}
-            transition={{ duration: 1.5, ease: [0.76, 0, 0.24, 1] }}
+            transition={{ duration: 2.4, ease: [0.25, 1, 0.35, 1] }}
             className="absolute right-0 top-0 bottom-0 w-[51.5%] z-20 shadow-[-20px_0_45px_rgba(100,75,40,0.25)] overflow-hidden bg-champagne-curtain transform-gpu"
           >
             {/* Vertical Silk Drape Folds Pattern */}
@@ -334,8 +339,8 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete, onStartUnveil 
               rotate: isOpening ? 3 : 0
             }}
             transition={{
-              duration: isOpening ? 0.65 : 0.8,
-              ease: [0.22, 1, 0.36, 1]
+              duration: isOpening ? 1.1 : 0.8,
+              ease: [0.25, 1, 0.35, 1]
             }}
             className="relative z-40 flex flex-col items-center cursor-pointer group"
           >
@@ -362,12 +367,12 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete, onStartUnveil 
                 <CornerFiligree position="bottom-right" className="bottom-4 right-4 opacity-30 w-6! h-6!" />
 
                 {/* Top Emblem Accent: Bohra 8-Point Star Motif */}
-                <div className="pt-2 sm:pt-3 z-10">
+                <div className="pt-4 sm:pt-3 z-10">
                   <DawoodiBohraStarPattern size={22} className="text-[#8D7047] opacity-90" />
                 </div>
 
                 {/* CENTER MONOGRAM: BRIDE & GROOM FIRST LETTERS */}
-                <div className="relative z-10 my-auto flex flex-col items-center">
+                <div className="relative z-10 mb-12 flex flex-col items-center">
                   <div className="flex items-center justify-center gap-2 sm:gap-3">
                     {/* Bride First Letter */}
                     <span className="font-serif-luxury text-4xl sm:text-6xl md:text-7xl font-bold text-[#8D7047] drop-shadow-[0_1px_2px_rgba(141,112,71,0.2)] tracking-wide">

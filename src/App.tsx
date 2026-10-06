@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AudioProvider } from './context/AudioContext';
+import { SmoothScrollProvider } from './context/SmoothScrollContext';
 import { Preloader } from './components/Preloader';
 import { ParticleBackground } from './components/ParticleBackground';
 import { NavbarNavigation } from './components/NavbarNavigation';
@@ -37,69 +38,71 @@ export function App() {
 
   return (
     <AudioProvider>
-      <div className="relative min-h-screen bg-[#F8F0E5] text-[#3D3227] font-sans selection:bg-[#D8BE94]/30 selection:text-[#5A462A] overflow-x-hidden">
-        {/* Floating Ambient Rose Petals & Gold Dust Background Across Full Website */}
-        <ParticleBackground />
+      <SmoothScrollProvider isLocked={isLoading && !isUnveiled}>
+        <div className="relative min-h-screen bg-[#F8F0E5] text-[#3D3227] font-sans selection:bg-[#D8BE94]/30 selection:text-[#5A462A] overflow-x-hidden">
+          {/* Floating Ambient Rose Petals & Gold Dust Background Across Full Website */}
+          <ParticleBackground />
 
-        {/* Premium Preloader Experience */}
-        {isLoading && (
-          <Preloader
-            onStartUnveil={handleStartUnveil}
-            onComplete={handleComplete}
-          />
-        )}
-
-        {/* Minimal Floating Navigation & Audio Control - Appears ONLY after preloader unveiling starts */}
-        <AnimatePresence>
-          {(isUnveiled || !isLoading) && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              <NavbarNavigation />
-            </motion.div>
+          {/* Premium Preloader Experience */}
+          {isLoading && (
+            <Preloader
+              onStartUnveil={handleStartUnveil}
+              onComplete={handleComplete}
+            />
           )}
-        </AnimatePresence>
 
-        {/* Master Content Reveal Wrapper — Smooth Cinematic Entrance as Curtains Part */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{
-            opacity: isUnveiled || !isLoading ? 1 : 0
-          }}
-          transition={{
-            duration: 1.2,
-            ease: [0.22, 1, 0.36, 1]
-          }}
-          className="w-full"
-        >
-          {/* 1. Hero Section — Majestic Architectural Invitation */}
-          <HeroInvitation isUnveiled={isUnveiled || !isLoading} />
+          {/* Minimal Floating Navigation & Audio Control - Appears ONLY after preloader unveiling starts */}
+          <AnimatePresence>
+            {(isUnveiled || !isLoading) && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                <NavbarNavigation />
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-          {/* 2. Sacred Nikah Section — Done on the Hands of Moula TUS */}
-          <NikahBlessing />
+          {/* Master Content Reveal Wrapper — Smooth Cinematic Entrance as Curtains Part */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: isUnveiled || !isLoading ? 1 : 0
+            }}
+            transition={{
+              duration: 1.2,
+              ease: [0.22, 1, 0.36, 1]
+            }}
+            className="w-full"
+          >
+            {/* 1. Hero Section — Majestic Architectural Invitation */}
+            <HeroInvitation isUnveiled={isUnveiled || !isLoading} />
 
-          {/* 3. Formal Digital Invitation Section */}
-          <FormalInvitation />
+            {/* 2. Sacred Nikah Section — Done on the Hands of Moula TUS */}
+            <NikahBlessing />
 
-          {/* 4. Couple Editorial Story Section */}
-          <CoupleStory />
+            {/* 3. Formal Digital Invitation Section */}
+            <FormalInvitation />
 
-          {/* 5. Wedding Events Timeline Section */}
-          <div id="events-section">
-            <EventsTimeline />
-          </div>
+            {/* 4. Couple Editorial Story Section */}
+            <CoupleStory />
 
-          {/* 6. Editorial Countdown Section */}
-          <Countdown />
+            {/* 5. Wedding Events Timeline Section */}
+            <div id="events-section">
+              <EventsTimeline />
+            </div>
 
-          {/* 10. Closing Invitation & Thank You Section */}
-          <ClosingInvitation />
-          <Analytics />
-        </motion.div>
-      </div>
+            {/* 6. Editorial Countdown Section */}
+            <Countdown />
+
+            {/* 10. Closing Invitation & Thank You Section */}
+            <ClosingInvitation />
+            <Analytics />
+          </motion.div>
+        </div>
+      </SmoothScrollProvider>
     </AudioProvider>
   );
 }

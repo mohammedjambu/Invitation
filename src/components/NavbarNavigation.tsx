@@ -3,13 +3,15 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Volume2, VolumeX, Menu, X, Heart, Calendar, Music, Home, FileText, Sparkles, Clock, Bookmark } from 'lucide-react';
 import { weddingData } from '../config/weddingData';
 import { useAudio } from '../context/AudioContext';
+import { useSmoothScroll } from '../context/SmoothScrollContext';
 
 export const NavbarNavigation: React.FC = () => {
   const { isPlaying, toggleAudio, songTitle, movieTitle } = useAudio();
+  const { lenis, scrollTo } = useSmoothScroll();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
 
-  // Monitor Scroll Progress
+  // Monitor Scroll Progress via Lenis physics ticks
   useEffect(() => {
     const handleScroll = () => {
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -17,9 +19,18 @@ export const NavbarNavigation: React.FC = () => {
       setScrollProgress(totalHeight > 0 ? (currentScroll / totalHeight) * 100 : 0);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    if (lenis) {
+      lenis.on('scroll', handleScroll);
+      handleScroll();
+      return () => {
+        lenis.off('scroll', handleScroll);
+      };
+    } else {
+      window.addEventListener('scroll', handleScroll);
+      handleScroll();
+      return () => window.removeEventListener('scroll', handleScroll);
+    }
+  }, [lenis]);
 
   const navLinks = [
     { name: 'Welcome Cover', href: '#hero-section', icon: Home },
@@ -113,7 +124,11 @@ export const NavbarNavigation: React.FC = () => {
                   <a
                     key={link.name}
                     href={link.href}
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsMenuOpen(false);
+                      scrollTo(link.href);
+                    }}
                     className="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-serif-luxury text-[#3D3227] hover:bg-[#F5E8D7] hover:text-[#8D7047] transition-colors"
                   >
                     <Icon size={14} className="text-[#B89A68] shrink-0" />

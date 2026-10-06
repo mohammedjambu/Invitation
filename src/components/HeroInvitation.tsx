@@ -4,6 +4,7 @@ import { weddingData } from '../config/weddingData';
 import { DawoodiBohraStarPattern, GeometricWatermarkPattern } from './Ornament';
 import { PREMIUM_EASE } from '../utils/motion';
 import { LuxuryHashtagBadge } from './LuxuryHashtagBadge';
+import { useSmoothScroll } from '../context/SmoothScrollContext';
 
 interface HeroInvitationProps {
   isUnveiled?: boolean;
@@ -11,6 +12,7 @@ interface HeroInvitationProps {
 
 export const HeroInvitation: React.FC<HeroInvitationProps> = ({ isUnveiled = true }) => {
   const heroRef = useRef<HTMLDivElement>(null);
+  const { scrollTo } = useSmoothScroll();
   // Dedicated viewport observer for Hero section
   const isInView = useInView(heroRef, { amount: 0.1 });
 
@@ -20,10 +22,7 @@ export const HeroInvitation: React.FC<HeroInvitationProps> = ({ isUnveiled = tru
   const [nuruddinCharCount, setNuruddinCharCount] = useState(0);
 
   const scrollToNext = () => {
-    const nextSection = document.getElementById('nikah-section');
-    if (nextSection) {
-      nextSection.scrollIntoView({ behavior: 'smooth' });
-    }
+    scrollTo('#nikah-section');
   };
 
   const brideName = weddingData.brideName || 'Mariya';
