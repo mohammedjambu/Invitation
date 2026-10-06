@@ -117,15 +117,15 @@ export const NikahBlessing: React.FC = () => {
       <GeometricWatermarkPattern />
 
       {/* Soft Warm Radial Backdrop Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-radial from-[#F5E5D3]/60 via-[#FDF9F3]/30 to-transparent rounded-full blur-3xl pointer-events-none z-0" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-162.5 h-162.5 bg-radial from-[#F5E5D3]/60 via-[#FDF9F3]/30 to-transparent rounded-full blur-3xl pointer-events-none z-0" />
 
-      <div className="max-w-[540px] sm:max-w-[580px] mx-auto relative z-10">
+      <div className="max-w-135 sm:max-w-145 mx-auto relative z-10">
         {/* PHASE 1: Physical Heirloom Canvas Frame Fades & Gently Settles */}
         <motion.div
           initial={{ opacity: 0, scale: 0.985 }}
           animate={phase >= 1 ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.985 }}
           transition={{ duration: 0.95, ease: PREMIUM_EASE }}
-          className="relative bg-gradient-to-b from-[#FFFDF9]/98 via-[#FDF8EE]/98 to-[#F8F0E5]/98 backdrop-blur-md rounded-t-[150px] sm:rounded-t-[200px] rounded-b-3xl p-6 sm:p-12 md:p-14 border border-[#B89A68]/35 shadow-[0_25px_60px_-15px_rgba(100,75,40,0.14),0_0_0_1px_rgba(184,154,104,0.25)] text-center select-none"
+          className="relative bg-linear-to-b from-[#FFFDF9]/98 via-[#FDF8EE]/98 to-[#F8F0E5]/98 backdrop-blur-md rounded-t-[150px] sm:rounded-t-[200px] rounded-b-3xl p-6 sm:p-12 md:p-14 border border-[#B89A68]/35 shadow-[0_25px_60px_-15px_rgba(100,75,40,0.14),0_0_0_1px_rgba(184,154,104,0.25)] text-center select-none"
         >
           {/* PHASE 2: Inner Dashed Gold Thread Outline & Filigrees */}
           <motion.div
@@ -241,18 +241,18 @@ export const NikahBlessing: React.FC = () => {
             initial={{ opacity: 0, scale: 1.04 }}
             animate={phase >= 7 ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 1.04 }}
             transition={{ duration: 1.1, ease: PREMIUM_EASE }}
-            className="relative max-w-[280px] sm:max-w-[330px] mx-auto my-5 sm:my-7 group"
+            className="relative max-w-70 sm:max-w-82.5 mx-auto my-5 sm:my-7 group"
           >
             {/* Outer Matting Frame with Soft Rounded Arch */}
             <div className="relative p-3 sm:p-4 bg-[#FFFDF9] rounded-t-[130px] sm:rounded-t-[160px] rounded-b-2xl border border-[#B89A68]/40 shadow-[0_12px_35px_-8px_rgba(100,75,40,0.14),0_0_0_1px_rgba(184,154,104,0.2)]">
               {/* Inner Fine Gold Double Outline */}
               <div className="p-1 sm:p-1.5 rounded-t-[122px] sm:rounded-t-[152px] rounded-b-xl border border-[#D8BE94]/50 relative">
                 {/* Arch Corner Filigrees */}
-                <CornerFiligree position="top-left" className="top-2 left-2 !w-6 !h-6 text-[#B89A68]/45" />
-                <CornerFiligree position="top-right" className="top-2 right-2 !w-6 !h-6 text-[#B89A68]/45" />
+                <CornerFiligree position="top-left" className="top-2 left-2 w-6! h-6! text-[#B89A68]/45" />
+                <CornerFiligree position="top-right" className="top-2 right-2 w-6! h-6! text-[#B89A68]/45" />
 
                 {/* Arched Photo Window */}
-                <div className="relative overflow-hidden rounded-t-[115px] sm:rounded-t-[145px] rounded-b-lg border border-[#B89A68]/30 aspect-[3/4] bg-[#EFE0CC]">
+                <div className="relative overflow-hidden rounded-t-[115px] sm:rounded-t-[145px] rounded-b-lg border border-[#B89A68]/30 aspect-3/4 bg-[#EFE0CC]">
                   <motion.img
                     src={photoSrc}
                     alt="Nikah Solemnization Portrait"
@@ -262,7 +262,7 @@ export const NikahBlessing: React.FC = () => {
                     className="w-full h-full object-cover object-top filter saturate-[0.98] contrast-[1.01] transition-transform duration-1000 group-hover:scale-103"
                   />
                   {/* Gentle Inner Vignette Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#3D3227]/20 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-linear-to-t from-[#3D3227]/20 via-transparent to-transparent pointer-events-none" />
                 </div>
               </div>
             </div>
