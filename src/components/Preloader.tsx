@@ -63,7 +63,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete, onStartUnveil 
             transition={{ duration: 1.5, ease: 'easeOut' }}
             className="absolute inset-0 pointer-events-none flex items-center justify-center z-0"
           >
-            <div className="w-[700px] h-[700px] rounded-full bg-[radial-gradient(circle_at_center,rgba(245,232,215,0.85)_0%,rgba(216,190,148,0.35)_45%,transparent_75%)] filter blur-3xl transform scale-125" />
+            <div className="w-175 h-175 rounded-full bg-[radial-gradient(circle_at_center,rgba(245,232,215,0.85)_0%,rgba(216,190,148,0.35)_45%,transparent_75%)] filter blur-3xl transform scale-125" />
           </motion.div>
 
           {/* ========================================================= */}
@@ -241,11 +241,11 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete, onStartUnveil 
             </svg>
 
             {/* Silk Ambient Surface Sheen */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-white/20 to-black/15 pointer-events-none" />
+            <div className="absolute inset-0 bg-linear-to-r from-black/10 via-white/20 to-black/15 pointer-events-none" />
 
             {/* Inner Gold Embroidered Seam Trim (Right edge of Left Curtain) */}
             <div className="absolute right-0 top-0 bottom-0 w-4 sm:w-6 gold-curtain-border flex flex-col justify-between items-center py-4 z-20">
-              <div className="w-full h-full opacity-35 bg-[radial-gradient(#8D7047_1px,transparent_1px)] bg-[size:6px_6px]" />
+              <div className="w-full h-full opacity-35 bg-[radial-gradient(#8D7047_1px,transparent_1px)] bg-size-[6px_6px]" />
             </div>
 
             {/* Vertical Ornate Filigree Gold Ribbon running next to border */}
@@ -295,11 +295,11 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete, onStartUnveil 
             </svg>
 
             {/* Silk Ambient Surface Sheen */}
-            <div className="absolute inset-0 bg-gradient-to-l from-black/10 via-white/20 to-black/15 pointer-events-none" />
+            <div className="absolute inset-0 bg-linear-to-l from-black/10 via-white/20 to-black/15 pointer-events-none" />
 
             {/* Inner Gold Embroidered Seam Trim (Left edge of Right Curtain) */}
             <div className="absolute left-0 top-0 bottom-0 w-4 sm:w-6 gold-curtain-border flex flex-col justify-between items-center py-4 z-20">
-              <div className="w-full h-full opacity-35 bg-[radial-gradient(#8D7047_1px,transparent_1px)] bg-[size:6px_6px]" />
+              <div className="w-full h-full opacity-35 bg-[radial-gradient(#8D7047_1px,transparent_1px)] bg-size-[6px_6px]" />
             </div>
 
             {/* Vertical Ornate Filigree Gold Ribbon running next to border */}
@@ -348,17 +348,17 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete, onStartUnveil 
             <div className="absolute -inset-6 sm:-inset-10 rounded-full bg-[radial-gradient(circle_at_center,rgba(245,230,210,0.8)_0%,rgba(184,154,104,0.3)_50%,transparent_75%)] filter blur-xl group-hover:scale-110 transition-transform duration-700" />
 
             {/* Main Gold Crest Medallion Frame */}
-            <div className="relative w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-full p-2.5 sm:p-3 bg-gradient-to-b from-[#C5A880]/60 via-[#B89A68]/40 to-[#8D7047]/50 shadow-[0_20px_50px_rgba(100,75,40,0.22)] flex items-center justify-center transform group-hover:scale-102 transition-transform duration-500">
+            <div className="relative w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-full p-2.5 sm:p-3 bg-linear-to-b from-[#C5A880]/60 via-[#B89A68]/40 to-[#8D7047]/50 shadow-[0_20px_50px_rgba(100,75,40,0.22)] flex items-center justify-center transform group-hover:scale-102 transition-transform duration-500">
               
               {/* Outer Decorative Gold Bevel Ring */}
               <div className="absolute inset-1.5 rounded-full border-2 border-[#B89A68]/60 pointer-events-none" />
               <div className="absolute inset-3 rounded-full border border-dashed border-[#B89A68]/40 pointer-events-none" />
 
               {/* Inner Soft Ivory Medallion Background */}
-              <div className="w-full h-full rounded-full bg-gradient-to-b from-[#FFFDF9] via-[#FAF6F0] to-[#F7EFE3] p-4 sm:p-6 flex flex-col items-center justify-between text-center relative overflow-hidden border border-[#FFFDF9] shadow-inner">
+              <div className="w-full h-full rounded-full bg-linear-to-b from-[#FFFDF9] via-[#FAF6F0] to-[#F7EFE3] p-4 sm:p-6 flex flex-col items-center justify-between text-center relative overflow-hidden border border-[#FFFDF9] shadow-inner">
                 
                 {/* Micro Star Watermark Background */}
-                <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#B89A68_1px,transparent_1px)] bg-[size:14px_14px] pointer-events-none" />
+                <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#B89A68_1px,transparent_1px)] bg-size-[14px_14px] pointer-events-none" />
 
                 {/* Corner Filigrees */}
                 <CornerFiligree position="top-left" className="top-4 left-4 opacity-30 w-6! h-6!" />
@@ -392,7 +392,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete, onStartUnveil 
 
                   {/* Gold Divider Line under Initials */}
                   <div className="flex items-center gap-2 my-1.5 sm:my-2 w-32 sm:w-44">
-                    <span className="h-px w-full bg-gradient-to-r from-transparent via-[#B89A68] to-transparent" />
+                    <span className="h-px w-full bg-linear-to-r from-transparent via-[#B89A68] to-transparent" />
                   </div>
 
                   {/* Couple Names Subtitle */}
