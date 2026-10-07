@@ -299,7 +299,7 @@ export const HeroInvitation: React.FC<HeroInvitationProps> = ({ isUnveiled = tru
 
             {/* PHASE 8: Luxury Invitation Hashtag Badge */}
             {weddingData.hashtag && (
-              <div className="mt-4">
+              <div className="mt-2">
                 <LuxuryHashtagBadge
                   hashtag={weddingData.hashtag}
                   isTriggered={phase >= 8}
@@ -315,7 +315,7 @@ export const HeroInvitation: React.FC<HeroInvitationProps> = ({ isUnveiled = tru
               animate={phase >= 9 ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
               transition={{ duration: 0.6, ease: PREMIUM_EASE }}
               whileHover={{ scale: 1.04 }}
-              className="mt-4 sm:mt-2 flex flex-col items-center gap-0.5 text-[#4A381E] cursor-pointer group"
+              className="mt-3 sm:mt-2 flex flex-col items-center gap-0.5 text-[#4A381E] cursor-pointer group"
               aria-label="Scroll to view invitation details"
             >
               <motion.div
