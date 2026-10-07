@@ -78,7 +78,7 @@ export const LuxuryHashtagBadge: React.FC<LuxuryHashtagBadgeProps> = ({
       />
 
       {/* 2. MAIN GILDED PILL CONTAINER */}
-      <div className="relative inline-flex items-center gap-2 px-5 py-2 sm:px-6.5 sm:py-2.5 rounded-full bg-gradient-to-r from-[#FFFDF9] via-[#FAF5EC] to-[#F7EEDF] border border-[#B89A68]/60 shadow-[0_6px_22px_-4px_rgba(100,75,40,0.18),inset_0_1px_0_rgba(255,255,255,0.9)] overflow-hidden">
+      <div className="relative inline-flex items-center gap-2 px-3 py-1 sm:px-6.5 sm:py-2.5 rounded-full bg-gradient-to-r from-[#FFFDF9] via-[#FAF5EC] to-[#F7EEDF] border border-[#B89A68]/60 shadow-[0_6px_22px_-4px_rgba(100,75,40,0.18),inset_0_1px_0_rgba(255,255,255,0.9)] overflow-hidden">
         
         {/* Left Decorative Gold Star */}
         <motion.div
