@@ -10,25 +10,25 @@ import type { Variants } from 'framer-motion';
 
 export const PREMIUM_EASE = [0.22, 1, 0.36, 1] as const;
 
-// Viewport configuration for full sections (15-25% threshold, once per session)
+// Viewport configuration for full sections (15% threshold, trigger once per session)
 export const SECTION_VIEWPORT = {
   once: true,
-  amount: 0.2, // 20% visible
-  margin: '0px 0px -12% 0px'
+  amount: 0.15, // 15% visible
+  margin: '0px 0px 0px 0px'
 };
 
 // Viewport configuration for Hero section
 export const HERO_VIEWPORT = {
   once: true,
-  amount: 0.25, // 25% visible
-  margin: '0px 0px -10% 0px'
+  amount: 0.15, // 15% visible
+  margin: '0px 0px 0px 0px'
 };
 
 // Viewport configuration for individual event cards
 export const CARD_VIEWPORT = {
   once: true,
-  amount: 0.15, // 15% visible
-  margin: '0px 0px -8% 0px'
+  amount: 0.1, // 10% visible
+  margin: '0px 0px 0px 0px'
 };
 
 // Stagger Container Creator

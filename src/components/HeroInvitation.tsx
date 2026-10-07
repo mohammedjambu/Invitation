@@ -13,8 +13,8 @@ interface HeroInvitationProps {
 export const HeroInvitation: React.FC<HeroInvitationProps> = ({ isUnveiled = true }) => {
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollTo } = useSmoothScroll();
-  // Dedicated viewport observer for Hero section
-  const isInView = useInView(heroRef, { amount: 0.1 });
+  // Dedicated viewport observer for Hero section (triggers strictly once)
+  const isInView = useInView(heroRef, { amount: 0.1, once: true });
 
   const hasTriggeredRef = useRef(false);
   const [phase, setPhase] = useState(0);
@@ -39,7 +39,7 @@ export const HeroInvitation: React.FC<HeroInvitationProps> = ({ isUnveiled = tru
     hasTriggeredRef.current = true;
 
     // Respect user reduced-motion setting
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) {
       setPhase(10);
       setMariyaCharCount(brideName.length);
@@ -47,70 +47,65 @@ export const HeroInvitation: React.FC<HeroInvitationProps> = ({ isUnveiled = tru
       return;
     }
 
-    const timers: ReturnType<typeof setTimeout>[] = [];
-
     // Phase 1: Environment Settle (curtains parting t = 0ms - 800ms)
     setPhase(1);
 
-    // Phase 2: Top Content - 786 / 110 & Ornament (t = 1100ms - right as curtains complete parting!)
-    timers.push(setTimeout(() => setPhase(2), 1100));
-
-    // Phase 3: Upper Invitation Copy - Blessings Text (t = 1450ms)
-    timers.push(setTimeout(() => setPhase(3), 1450));
+    // Self-contained timers sequence (uninterrupted by scroll)
+    setTimeout(() => setPhase(2), 1100);
+    setTimeout(() => setPhase(3), 1450);
 
     // Phase 4: Mariya Typewriter Reveal Start (t = 1900ms)
-    timers.push(setTimeout(() => {
+    setTimeout(() => {
       setPhase(4);
       for (let i = 1; i <= brideName.length; i++) {
-        timers.push(setTimeout(() => {
-          setMariyaCharCount(i);
-        }, i * 130));
+        setTimeout(() => {
+          setMariyaCharCount(prev => Math.max(prev, i));
+        }, i * 130);
       }
-    }, 1900));
+    }, 1900);
 
-    // Phase 5: Ampersand Reveal (t = 1900 + brideName.length * 130 + 250 = 2930ms)
+    // Phase 5: Ampersand Reveal
     const ampersandTime = 1900 + brideName.length * 130 + 250;
-    timers.push(setTimeout(() => {
+    setTimeout(() => {
       setPhase(5);
-    }, ampersandTime));
+    }, ampersandTime);
 
-    // Phase 6: Nuruddin Typewriter Reveal Start (t = ampersandTime + 350ms = 3280ms)
+    // Phase 6: Nuruddin Typewriter Reveal Start
     const nuruddinStartTime = ampersandTime + 350;
-    timers.push(setTimeout(() => {
+    setTimeout(() => {
       setPhase(6);
       for (let i = 1; i <= groomName.length; i++) {
-        timers.push(setTimeout(() => {
-          setNuruddinCharCount(i);
-        }, i * 130));
+        setTimeout(() => {
+          setNuruddinCharCount(prev => Math.max(prev, i));
+        }, i * 130);
       }
-    }, nuruddinStartTime));
+    }, nuruddinStartTime);
 
-    // Phase 7: Lower Invitation Text Reveal (t = nuruddinStartTime + groomName.length * 130 + 300 = 4620ms)
+    // Phase 7: Lower Invitation Text Reveal
     const inviteTextTime = nuruddinStartTime + groomName.length * 130 + 300;
-    timers.push(setTimeout(() => {
+    setTimeout(() => {
       setPhase(7);
-    }, inviteTextTime));
+    }, inviteTextTime);
 
-    // Phase 8: Hashtag Pill (#NoorKiHoor) (t = inviteTextTime + 450ms = 5070ms)
+    // Phase 8: Hashtag Pill (#NoorKiHoor)
     const hashtagTime = inviteTextTime + 450;
-    timers.push(setTimeout(() => {
+    setTimeout(() => {
       setPhase(8);
-    }, hashtagTime));
+    }, hashtagTime);
 
-    // Phase 9: Final Scroll Prompt Cue (t = hashtagTime + 400ms = 5470ms)
+    // Phase 9: Final Scroll Prompt Cue
     const finalTime = hashtagTime + 400;
-    timers.push(setTimeout(() => {
+    setTimeout(() => {
       setPhase(9);
-    }, finalTime));
+    }, finalTime);
 
-    // Complete State
-    timers.push(setTimeout(() => {
+    // Phase 10: Complete State & Guarantee Full Word Visibility
+    setTimeout(() => {
       setPhase(10);
-    }, finalTime + 500));
+      setMariyaCharCount(brideName.length);
+      setNuruddinCharCount(groomName.length);
+    }, finalTime + 500);
 
-    return () => {
-      timers.forEach(t => clearTimeout(t));
-    };
   }, [shouldStartSequence, brideName.length, groomName.length]);
 
   return (
@@ -236,7 +231,7 @@ export const HeroInvitation: React.FC<HeroInvitationProps> = ({ isUnveiled = tru
               {/* PHASE 4: Bride Name (Mariya) Letter-by-Letter Typewriter Reveal */}
               <h1 className="font-script-luxury text-6xl sm:text-7xl md:text-8xl text-[#4A3319] font-normal leading-[1.02] tracking-normal drop-shadow-[0_3px_8px_rgba(74,51,25,0.2)]">
                 {brideName.split('').map((char, index) => {
-                  const isVisible = mariyaCharCount > index;
+                  const isVisible = phase >= 10 || (phase >= 4 && mariyaCharCount > index);
                   return (
                     <span
                       key={index}
@@ -265,7 +260,7 @@ export const HeroInvitation: React.FC<HeroInvitationProps> = ({ isUnveiled = tru
               {/* PHASE 6: Groom Name (Nuruddin) Letter-by-Letter Typewriter Reveal */}
               <h1 className="font-script-luxury text-6xl sm:text-7xl md:text-8xl text-[#4A3319] font-normal leading-[1.02] tracking-normal drop-shadow-[0_3px_8px_rgba(74,51,25,0.2)]">
                 {groomName.split('').map((char, index) => {
-                  const isVisible = nuruddinCharCount > index;
+                  const isVisible = phase >= 10 || (phase >= 6 && nuruddinCharCount > index);
                   return (
                     <span
                       key={index}

@@ -8,16 +8,16 @@ export const CoupleStory: React.FC = () => {
   const coupleStoryRef = useRef<HTMLElement>(null);
   const storyTextRef = useRef<HTMLDivElement>(null);
 
-  // Dedicated viewport observer for top section (Header, Photo, Headline)
+  // Dedicated viewport observer for top section (Header, Photo, Headline) (triggers ONCE)
   const isTopInView = useInView(coupleStoryRef, {
-    amount: 0.2
+    amount: 0.15,
+    once: true
   });
 
-  // Dedicated viewport observer for story text & hashtag signature:
-  // Triggers strictly when the user scrolls down and reaches the upper story paragraph!
+  // Dedicated viewport observer for story text & hashtag signature (triggers ONCE)
   const isTextInView = useInView(storyTextRef, {
-    amount: 0.35,
-    margin: '0px 0px -40px 0px'
+    amount: 0.25,
+    once: true
   });
 
   const hasTopTriggeredRef = useRef(false);
@@ -36,73 +36,62 @@ export const CoupleStory: React.FC = () => {
 
     hasTopTriggeredRef.current = true;
 
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) {
       setTopPhase(10);
       return;
     }
 
-    const timers: ReturnType<typeof setTimeout>[] = [];
-
     // Phase 1: Section Header ("A LITTLE ABOUT US")
     setTopPhase(1);
 
-    // Phase 2: Photograph "Memory Developing" Reveal (t = 200ms)
-    timers.push(setTimeout(() => setTopPhase(2), 200));
+    // Self-contained timers sequence (uninterrupted by scroll)
+    setTimeout(() => setTopPhase(2), 200);
+    setTimeout(() => setTopPhase(3), 550);
+    setTimeout(() => setTopPhase(4), 720);
+    setTimeout(() => setTopPhase(5), 890);
+    setTimeout(() => setTopPhase(6), 1150);
+    setTimeout(() => setTopPhase(10), 1500);
 
-    // Phase 3-5: Editorial Headline Lines (t = 550ms - 890ms)
-    timers.push(setTimeout(() => setTopPhase(3), 550));
-    timers.push(setTimeout(() => setTopPhase(4), 720));
-    timers.push(setTimeout(() => setTopPhase(5), 890));
-
-    // Phase 6: Divider under headline (t = 1150ms)
-    timers.push(setTimeout(() => setTopPhase(6), 1150));
-
-    return () => {
-      timers.forEach(t => clearTimeout(t));
-    };
   }, [isTopInView]);
 
   // 2. Story Paragraph & Hashtag Signature Sequence
-  // Triggers slowly as the user actually scrolls down and reaches the upper paragraph!
   useEffect(() => {
     if (hasTextTriggeredRef.current) return;
     if (!isTextInView) return;
 
     hasTextTriggeredRef.current = true;
 
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) {
       setTextPhase(10);
       setHashtagCharCount(hashtagText.length);
       return;
     }
 
-    const timers: ReturnType<typeof setTimeout>[] = [];
-
     // Text Phase 1: Personal Story Quote Paragraph (t = 0ms)
     setTextPhase(1);
 
-    // Text Phase 2: Aqa Moula TUS statement (t = 450ms)
-    timers.push(setTimeout(() => setTextPhase(2), 450));
+    // Self-contained timers sequence (uninterrupted by scroll)
+    setTimeout(() => setTextPhase(2), 450);
+    setTimeout(() => setTextPhase(3), 850);
 
-    // Text Phase 3: Ornamental Memory Star (t = 850ms)
-    timers.push(setTimeout(() => setTextPhase(3), 850));
-
-    // Text Phase 4: Hashtag Script Signature Slow Ink Typing (t = 1200ms)
-    // Slowly types out letter-by-letter as the user reads the invitation!
-    timers.push(setTimeout(() => {
+    // Text Phase 4: Hashtag Script Signature Slow Ink Typing
+    setTimeout(() => {
       setTextPhase(4);
       for (let i = 1; i <= hashtagText.length; i++) {
-        timers.push(setTimeout(() => {
-          setHashtagCharCount(i);
-        }, i * 160)); // 160ms per character for a deliberate, elegant ink reveal
+        setTimeout(() => {
+          setHashtagCharCount(prev => Math.max(prev, i));
+        }, i * 160);
       }
-    }, 1200));
+    }, 1200);
 
-    return () => {
-      timers.forEach(t => clearTimeout(t));
-    };
+    const totalHashtagTime = 1200 + hashtagText.length * 160 + 300;
+    setTimeout(() => {
+      setTextPhase(10);
+      setHashtagCharCount(hashtagText.length);
+    }, totalHashtagTime);
+
   }, [isTextInView, hashtagText.length]);
 
   return (
@@ -312,7 +301,7 @@ export const CoupleStory: React.FC = () => {
                   key={index}
                   initial={{ opacity: 0, filter: 'blur(4px)' }}
                   animate={
-                    textPhase >= 4 && index < hashtagCharCount
+                    textPhase >= 10 || (textPhase >= 4 && index < hashtagCharCount)
                       ? { opacity: 1, filter: 'blur(0px)' }
                       : { opacity: 0, filter: 'blur(4px)' }
                   }

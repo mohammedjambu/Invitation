@@ -152,8 +152,8 @@ const LuxuryDateRevealPanel: React.FC = () => {
 // ============================================================================
 export const FormalInvitation: React.FC = () => {
   const invitationRef = useRef<HTMLElement>(null);
-  // Dedicated viewport observer: triggers strictly when Main Invitation section enters 20% of viewport on scroll
-  const isInView = useInView(invitationRef, { amount: 0.2 });
+  // Dedicated viewport observer: triggers strictly ONCE when Main Invitation section enters 15% of viewport on scroll
+  const isInView = useInView(invitationRef, { amount: 0.15, once: true });
 
   const hasTriggeredRef = useRef(false);
   const [phase, setPhase] = useState(0);
@@ -170,7 +170,7 @@ export const FormalInvitation: React.FC = () => {
     hasTriggeredRef.current = true;
 
     // Respect user reduced-motion preference
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) {
       setPhase(14);
       setMariyaCharCount(brideName.length);
@@ -178,64 +178,59 @@ export const FormalInvitation: React.FC = () => {
       return;
     }
 
-    const timers: ReturnType<typeof setTimeout>[] = [];
-
     // Phase 1: Architectural Backplate & Structure Frame (t = 0ms)
     setPhase(1);
 
-    // Phase 2: Fine Gold Foil Linework & Keystone Ornament (t = 250ms)
-    timers.push(setTimeout(() => setPhase(2), 250));
-
-    // Phase 3: Sacred Bismillah Arabic Calligraphy (t = 600ms)
-    timers.push(setTimeout(() => setPhase(3), 600));
-
-    // Phase 4: Formal Invitation Introduction Copy (t = 950ms)
-    timers.push(setTimeout(() => setPhase(4), 950));
+    // Self-contained timers sequence (uninterrupted by scroll)
+    setTimeout(() => setPhase(2), 250);
+    setTimeout(() => setPhase(3), 600);
+    setTimeout(() => setPhase(4), 950);
 
     // Phase 5: Mariya Typewriter & Editorial Ink Reveal (t = 1350ms)
-    timers.push(setTimeout(() => {
+    setTimeout(() => {
       setPhase(5);
       for (let i = 1; i <= brideName.length; i++) {
-        timers.push(setTimeout(() => {
-          setMariyaCharCount(i);
-        }, i * 120));
+        setTimeout(() => {
+          setMariyaCharCount(prev => Math.max(prev, i));
+        }, i * 120);
       }
-    }, 1350));
+    }, 1350);
 
-    // Phase 6: Bride Family Information (t = 1950ms)
-    timers.push(setTimeout(() => setPhase(6), 1950));
+    // Phase 6: Bride Family Information
+    setTimeout(() => setPhase(6), 1950);
 
-    // Phase 7: Ornamental Divider ("With") (t = 2350ms)
-    timers.push(setTimeout(() => setPhase(7), 2350));
+    // Phase 7: Ornamental Divider ("With")
+    setTimeout(() => setPhase(7), 2350);
 
     // Phase 8: Nuruddin Typewriter & Editorial Ink Reveal (t = 2750ms)
-    timers.push(setTimeout(() => {
+    setTimeout(() => {
       setPhase(8);
       for (let i = 1; i <= groomName.length; i++) {
-        timers.push(setTimeout(() => {
-          setNuruddinCharCount(i);
-        }, i * 120));
+        setTimeout(() => {
+          setNuruddinCharCount(prev => Math.max(prev, i));
+        }, i * 120);
       }
-    }, 2750));
+    }, 2750);
 
-    // Phase 9: Groom Family Information (t = 3350ms)
-    timers.push(setTimeout(() => setPhase(9), 3350));
+    // Phase 9: Groom Family Information
+    setTimeout(() => setPhase(9), 3350);
 
-    // Phase 10: "DEAR FRIENDS & FAMILY" & Personal Message (t = 3750ms)
-    timers.push(setTimeout(() => setPhase(10), 3750));
+    // Phase 10: "DEAR FRIENDS & FAMILY" & Personal Message
+    setTimeout(() => setPhase(10), 3750);
 
-    // Phase 11: Interactive Date Reveal Panel (t = 4300ms)
-    timers.push(setTimeout(() => setPhase(11), 4300));
+    // Phase 11: Interactive Date Reveal Panel
+    setTimeout(() => setPhase(11), 4300);
 
-    // Phase 12: #NoorKiHoor Hashtag Badge (t = 4800ms)
-    timers.push(setTimeout(() => setPhase(12), 4800));
+    // Phase 12: #NoorKiHoor Hashtag Badge
+    setTimeout(() => setPhase(12), 4800);
 
-    // Complete State (t = 5400ms)
-    timers.push(setTimeout(() => setPhase(14), 5400));
+    // Complete State & Guarantee Full Word Visibility
+    setTimeout(() => {
+      setPhase(14);
+      setMariyaCharCount(brideName.length);
+      setNuruddinCharCount(groomName.length);
+    }, 5400);
 
-    return () => {
-      timers.forEach(t => clearTimeout(t));
-    };
   }, [isInView, brideName.length, groomName.length]);
 
   return (
@@ -458,7 +453,7 @@ export const FormalInvitation: React.FC = () => {
                       key={index}
                       initial={{ opacity: 0, filter: 'blur(4px)' }}
                       animate={
-                        phase >= 5 && index < mariyaCharCount
+                        phase >= 14 || (phase >= 5 && index < mariyaCharCount)
                           ? { opacity: 1, filter: 'blur(0px)' }
                           : { opacity: 0, filter: 'blur(4px)' }
                       }
@@ -522,7 +517,7 @@ export const FormalInvitation: React.FC = () => {
                       key={index}
                       initial={{ opacity: 0, filter: 'blur(4px)' }}
                       animate={
-                        phase >= 8 && index < nuruddinCharCount
+                        phase >= 14 || (phase >= 8 && index < nuruddinCharCount)
                           ? { opacity: 1, filter: 'blur(0px)' }
                           : { opacity: 0, filter: 'blur(4px)' }
                       }

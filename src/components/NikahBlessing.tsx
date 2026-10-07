@@ -13,8 +13,8 @@ export const NikahBlessing: React.FC = () => {
   const photoSrc = weddingData.nikahImage || weddingData.coupleStory.image || "/images/nikah.jpeg";
 
   const nikahRef = useRef<HTMLElement>(null);
-  // Dedicated viewport observer: triggers strictly when Nikah section enters 20% of viewport on scroll
-  const isInView = useInView(nikahRef, { amount: 0.2 });
+  // Dedicated viewport observer: triggers strictly ONCE when Nikah section enters 15% of viewport on scroll
+  const isInView = useInView(nikahRef, { amount: 0.15, once: true });
 
   const hasTriggeredRef = useRef(false);
   const [phase, setPhase] = useState(0);
@@ -31,7 +31,7 @@ export const NikahBlessing: React.FC = () => {
     hasTriggeredRef.current = true;
 
     // Respect user reduced-motion preference
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) {
       setPhase(11);
       setMariyaCharCount(brideName.length);
@@ -39,76 +39,71 @@ export const NikahBlessing: React.FC = () => {
       return;
     }
 
-    const timers: ReturnType<typeof setTimeout>[] = [];
-
     // Phase 1: Outer Card Frame Gently Appears (t = 0ms)
     setPhase(1);
 
-    // Phase 2: Fine Gold Border & Header Badge (t = 200ms)
-    timers.push(setTimeout(() => setPhase(2), 200));
-
-    // Phase 3: Arabic Calligraphy Blessing (t = 450ms)
-    timers.push(setTimeout(() => setPhase(3), 450));
+    // Self-contained timers sequence (uninterrupted by scroll)
+    setTimeout(() => setPhase(2), 200);
+    setTimeout(() => setPhase(3), 450);
 
     // Phase 4: Bride Name (Mariya) Typewriter Start (t = 750ms)
-    timers.push(setTimeout(() => {
+    setTimeout(() => {
       setPhase(4);
       for (let i = 1; i <= brideName.length; i++) {
-        timers.push(setTimeout(() => {
-          setMariyaCharCount(i);
-        }, i * 130));
+        setTimeout(() => {
+          setMariyaCharCount(prev => Math.max(prev, i));
+        }, i * 130);
       }
-    }, 750));
+    }, 750);
 
-    // Phase 5: Ampersand Reveal (t = 750 + brideName.length * 130 + 200)
+    // Phase 5: Ampersand Reveal
     const ampersandTime = 750 + brideName.length * 130 + 200;
-    timers.push(setTimeout(() => {
+    setTimeout(() => {
       setPhase(5);
-    }, ampersandTime));
+    }, ampersandTime);
 
-    // Phase 6: Groom Name (Nuruddin) Typewriter Start (t = ampersandTime + 250ms)
+    // Phase 6: Groom Name (Nuruddin) Typewriter Start
     const nuruddinStartTime = ampersandTime + 250;
-    timers.push(setTimeout(() => {
+    setTimeout(() => {
       setPhase(6);
       for (let i = 1; i <= groomName.length; i++) {
-        timers.push(setTimeout(() => {
-          setNuruddinCharCount(i);
-        }, i * 130));
+        setTimeout(() => {
+          setNuruddinCharCount(prev => Math.max(prev, i));
+        }, i * 130);
       }
-    }, nuruddinStartTime));
+    }, nuruddinStartTime);
 
-    // Phase 7: Photograph Unveiling - Emotional Centerpiece (t = nuruddinStartTime + groomName.length * 130 + 250)
+    // Phase 7: Photograph Unveiling - Emotional Centerpiece
     const photoTime = nuruddinStartTime + groomName.length * 130 + 250;
-    timers.push(setTimeout(() => {
+    setTimeout(() => {
       setPhase(7);
-    }, photoTime));
+    }, photoTime);
 
-    // Phase 8: Hijri Date Badge & Identifier (t = photoTime + 700ms)
+    // Phase 8: Hijri Date Badge & Identifier
     const dateBadgeTime = photoTime + 700;
-    timers.push(setTimeout(() => {
+    setTimeout(() => {
       setPhase(8);
-    }, dateBadgeTime));
+    }, dateBadgeTime);
 
-    // Phase 9: Sacred Aqa Moula TUS Statement & Location (t = dateBadgeTime + 350ms)
+    // Phase 9: Sacred Aqa Moula TUS Statement & Location
     const statementTime = dateBadgeTime + 350;
-    timers.push(setTimeout(() => {
+    setTimeout(() => {
       setPhase(9);
-    }, statementTime));
+    }, statementTime);
 
-    // Phase 10: Final Quiet Blessing Line (t = statementTime + 400ms)
+    // Phase 10: Final Quiet Blessing Line
     const finalTime = statementTime + 400;
-    timers.push(setTimeout(() => {
+    setTimeout(() => {
       setPhase(10);
-    }, finalTime));
+    }, finalTime);
 
-    // Complete State
-    timers.push(setTimeout(() => {
+    // Complete State & Guarantee Full Word Visibility
+    setTimeout(() => {
       setPhase(11);
-    }, finalTime + 500));
+      setMariyaCharCount(brideName.length);
+      setNuruddinCharCount(groomName.length);
+    }, finalTime + 500);
 
-    return () => {
-      timers.forEach(t => clearTimeout(t));
-    };
   }, [isInView, brideName.length, groomName.length]);
 
   return (
@@ -189,7 +184,7 @@ export const NikahBlessing: React.FC = () => {
               {/* Mariya Typewriter */}
               <span>
                 {brideName.split('').map((char, index) => {
-                  const isVisible = mariyaCharCount > index;
+                  const isVisible = phase >= 11 || (phase >= 4 && mariyaCharCount > index);
                   return (
                     <span
                       key={index}
@@ -218,7 +213,7 @@ export const NikahBlessing: React.FC = () => {
               {/* Nuruddin Typewriter */}
               <span>
                 {groomName.split('').map((char, index) => {
-                  const isVisible = nuruddinCharCount > index;
+                  const isVisible = phase >= 11 || (phase >= 6 && nuruddinCharCount > index);
                   return (
                     <span
                       key={index}

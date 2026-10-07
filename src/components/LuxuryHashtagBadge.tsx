@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { PREMIUM_EASE } from '../utils/motion';
 import { DawoodiBohraStarPattern } from './Ornament';
@@ -16,31 +16,38 @@ export const LuxuryHashtagBadge: React.FC<LuxuryHashtagBadgeProps> = ({
   delay = 0,
   className = ''
 }) => {
+  const hasTriggeredRef = useRef(false);
   const [typedCharCount, setTypedCharCount] = useState(0);
   const [isGlowing, setIsGlowing] = useState(false);
 
   useEffect(() => {
-    if (!isTriggered) return;
+    if (!isTriggered || hasTriggeredRef.current) return;
+    hasTriggeredRef.current = true;
 
-    const timers: ReturnType<typeof setTimeout>[] = [];
+    // Respect user reduced-motion setting
+    const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      setIsGlowing(true);
+      setTypedCharCount(hashtag.length);
+      return;
+    }
 
-    // Trigger typing sequence after delay
-    timers.push(
-      setTimeout(() => {
-        setIsGlowing(true);
-        for (let i = 1; i <= hashtag.length; i++) {
-          timers.push(
-            setTimeout(() => {
-              setTypedCharCount(i);
-            }, i * 90)
-          );
-        }
-      }, delay)
-    );
+    // Trigger typing sequence after delay (self-contained)
+    setTimeout(() => {
+      setIsGlowing(true);
+      for (let i = 1; i <= hashtag.length; i++) {
+        setTimeout(() => {
+          setTypedCharCount(prev => Math.max(prev, i));
+        }, i * 90);
+      }
+    }, delay);
 
-    return () => {
-      timers.forEach(t => clearTimeout(t));
-    };
+    // Final safety completion
+    setTimeout(() => {
+      setIsGlowing(true);
+      setTypedCharCount(hashtag.length);
+    }, delay + hashtag.length * 90 + 300);
+
   }, [isTriggered, hashtag, delay]);
 
   const characters = hashtag.split('');
