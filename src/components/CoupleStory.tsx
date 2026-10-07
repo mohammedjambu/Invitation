@@ -257,7 +257,7 @@ export const CoupleStory: React.FC = () => {
             <p className="font-serif-luxury text-base sm:text-lg md:text-xl text-[#4A381E] leading-relaxed font-normal">
               "Some stories are written in grand moments. <br />
               Ours has been shaped by the quiet ones — <br className="hidden sm:inline" />
-              the conversations, the smiles, the families,<br className="hidden sm:inline" />
+              the conversations, the smiles, the families, <br className="hidden sm:inline" />
               and all the little moments that brought us here."
             </p>
           </motion.div>

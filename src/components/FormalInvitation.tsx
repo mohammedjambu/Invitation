@@ -119,7 +119,7 @@ const LuxuryDateRevealPanel: React.FC = () => {
                     07:30 PM
                   </span>
                   <span className="font-serif-luxury text-[9px] sm:text-[10px] font-semibold tracking-[0.18em] uppercase text-[#8D7047] whitespace-nowrap">
-                    ()
+                    (Batul Hall)
                   </span>
                 </div>
 
@@ -475,7 +475,7 @@ export const FormalInvitation: React.FC = () => {
                     Daughter of
                   </p>
                   <p className="font-serif-luxury text-xs sm:text-sm md:text-base tracking-[0.18em] font-bold text-[#4A381E] uppercase max-w-[380px] sm:max-w-md mx-auto">
-                    Mr. Zulfiqar & Mrs. Maryam Sodawala
+                    {weddingData.brideParents}
                   </p>
                 </motion.div>
               </div>
@@ -539,7 +539,7 @@ export const FormalInvitation: React.FC = () => {
                     Son of
                   </p>
                   <p className="font-serif-luxury text-xs sm:text-sm md:text-base tracking-[0.18em] font-bold text-[#4A381E] uppercase max-w-[380px] sm:max-w-md mx-auto">
-                    Mr. Mustafa & Mrs. Fatema Kagalwala
+                    {weddingData.groomParents}
                   </p>
                 </motion.div>
               </div>

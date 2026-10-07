@@ -176,7 +176,7 @@ export const HeroInvitation: React.FC<HeroInvitationProps> = ({ isUnveiled = tru
               initial={{ opacity: 0, y: -15 }}
               animate={phase >= 2 ? { opacity: 1, y: 0 } : { opacity: 0, y: -15 }}
               transition={{ duration: 0.75, ease: PREMIUM_EASE }}
-              className="flex flex-col items-center gap-1"
+              className="flex flex-col items-center"
             >
               <span className="font-serif-luxury text-sm sm:text-base md:text-lg text-[#4A381E] tracking-[0.32em] font-bold uppercase drop-shadow-xs">
                 786 / 110
@@ -227,7 +227,7 @@ export const HeroInvitation: React.FC<HeroInvitationProps> = ({ isUnveiled = tru
             </div>
 
             {/* COUPLE NAMES — REFINED TYPEWRITER REVEAL */}
-            <div className="my-1 sm:my-2 flex flex-col items-center">
+            <div className="my-2 sm:my-2 flex flex-col items-center">
               {/* PHASE 4: Bride Name (Mariya) Letter-by-Letter Typewriter Reveal */}
               <h1 className="font-script-luxury text-6xl sm:text-7xl md:text-8xl text-[#4A3319] font-normal leading-[1.02] tracking-normal drop-shadow-[0_3px_8px_rgba(74,51,25,0.2)]">
                 {brideName.split('').map((char, index) => {
@@ -278,7 +278,7 @@ export const HeroInvitation: React.FC<HeroInvitationProps> = ({ isUnveiled = tru
             </div>
 
             {/* PHASE 7: Supporting Invitation Lines */}
-            <div className="flex flex-col items-center gap-1 my-1">
+            <div className="flex flex-col items-center gap-1 my-2">
               <motion.p
                 initial={{ opacity: 0, y: 18 }}
                 animate={phase >= 7 ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
@@ -299,7 +299,7 @@ export const HeroInvitation: React.FC<HeroInvitationProps> = ({ isUnveiled = tru
 
             {/* PHASE 8: Luxury Invitation Hashtag Badge */}
             {weddingData.hashtag && (
-              <div className="my-1">
+              <div className="mt-4">
                 <LuxuryHashtagBadge
                   hashtag={weddingData.hashtag}
                   isTriggered={phase >= 8}
@@ -315,7 +315,7 @@ export const HeroInvitation: React.FC<HeroInvitationProps> = ({ isUnveiled = tru
               animate={phase >= 9 ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
               transition={{ duration: 0.6, ease: PREMIUM_EASE }}
               whileHover={{ scale: 1.04 }}
-              className="mt-1 sm:mt-2 flex flex-col items-center gap-0.5 text-[#4A381E] cursor-pointer group"
+              className="mt-4 sm:mt-2 flex flex-col items-center gap-0.5 text-[#4A381E] cursor-pointer group"
               aria-label="Scroll to view invitation details"
             >
               <motion.div

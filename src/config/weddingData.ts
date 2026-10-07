@@ -72,7 +72,7 @@ export const weddingData: WeddingConfig = {
   weddingDateISO: "2026-11-27T17:30:00+04:00",
   dateDisplay: "Friday, 27th November 2026",
   hijriDateDisplay: "18th Jamadal Ukhra 1448H",
-  hijriNikahDateDisplay: "7th Shawwal al Mukarram 1447H",
+  hijriNikahDateDisplay: "7th Shawwalul Mukarram 1447H",
   bismillahArabic: "بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ",
   nikahHeadlineArabic: "بَارَكَ اللهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ",
   nikahStatement: "Nikah performed on the hands of Aqa Moula TUS",
@@ -80,8 +80,8 @@ export const weddingData: WeddingConfig = {
   nikahShortBlessing: "A blessed beginning, under the Du'a and Raza Mubarak of Aqa Moula TUS.",
   nikahImage: "/images/nikah.jpeg",
   formalInvitationText: "With our Nikah blessed by Aqa Moula TUS, we now look forward to celebrating this joyous occasion surrounded by those closest to our hearts.",
-  groomParents: "Son of Mr. Mustafa & Mrs. Fatema Kagalwala",
-  brideParents: "Daughter of Mr. Zulfiqar & Mrs. Mariyam Sodawala",
+  groomParents: "Mr. Mustafa & Mrs. Fatema Kagalwala",
+  brideParents: "Mr. Zulfiqar & Mrs. Mariyam Sodawala",
   events: [
     {
       id: "shitabi",
@@ -152,7 +152,7 @@ export const weddingData: WeddingConfig = {
   closingMessage: "We eagerly await the pleasure of your company, your blessings, and your prayers as we embark on this sacred journey of togetherness.",
   closingFamilies: "The Sodawala Family",
   coupleStory: {
-    title: "IT WAS ALWAYS THE LITTLE THINGS",
+    title: "A LITTLE ABOUT US",
     quote: "“Not one big moment, but a thousand little ones brought us here.”",
     text: "By the grace of Aqa Moula TUS , we begin the rest of our story together.",
     image: "/images/couple.jpeg"
