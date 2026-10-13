@@ -69,7 +69,7 @@ export const weddingData: WeddingConfig = {
   groomFullName: "Nuruddin Kagalwala",
   monogram: "M & N",
   hashtag: "#NoorKiHoor",
-  weddingDateISO: "2026-11-27T17:30:00+04:00",
+  weddingDateISO: "2026-11-24T17:30:00+04:00",
   dateDisplay: "Friday, 27th November 2026",
   hijriDateDisplay: "18th Jamadal Ukhra 1448H",
   hijriNikahDateDisplay: "7th Shawwalul Mukarram 1447H",

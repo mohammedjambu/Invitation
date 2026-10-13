@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { weddingData } from '../config/weddingData';
 import {
   CornerFiligree,
@@ -9,143 +9,7 @@ import {
 } from './Ornament';
 import { PREMIUM_EASE } from '../utils/motion';
 import { LuxuryHashtagBadge } from './LuxuryHashtagBadge';
-
-// ============================================================================
-// LUXURY INTERACTIVE DATE REVEAL COMPONENT
-// Physical luxury envelope & wax seal unfold interaction revealing the editorial date
-// ============================================================================
-const LuxuryDateRevealPanel: React.FC = () => {
-  const [isRevealed, setIsRevealed] = useState(false);
-
-  return (
-    <div className="relative flex flex-col items-center justify-center my-4 select-none w-full max-w-[310px] sm:max-w-[370px] mx-auto perspective-1200">
-      <motion.div
-        onClick={() => setIsRevealed(true)}
-        className={`relative w-full cursor-pointer transition-transform duration-500 ${
-          !isRevealed ? 'hover:scale-[1.02]' : ''
-        }`}
-        aria-label="Interactive Wedding Date & Time Reveal"
-      >
-        <AnimatePresence mode="wait">
-          {!isRevealed ? (
-            /* CLOSED STATE: LUXURY UNOPENED SEAL & STATIONERY FLAP */
-            <motion.div
-              key="closed-seal"
-              initial={{ opacity: 0, scale: 0.95, rotateX: 0 }}
-              animate={{ opacity: 1, scale: 1, rotateX: 0 }}
-              exit={{ opacity: 0, scale: 0.92, rotateX: -25, y: -8 }}
-              transition={{ duration: 0.5, ease: PREMIUM_EASE }}
-              className="relative w-full bg-gradient-to-b from-[#FFFDF9] via-[#FAF3E8] to-[#F5E8D7] rounded-xl p-4 sm:p-5 border border-[#B89A68]/45 shadow-[0_8px_25px_-6px_rgba(100,75,40,0.14)] text-center flex flex-col items-center justify-center overflow-hidden transform-gpu"
-            >
-              {/* Outer Fine Gold Filigree Corner Accents */}
-              <CornerFiligree position="top-left" className="top-1.5 left-1.5 !w-4 !h-4 text-[#B89A68]/50" />
-              <CornerFiligree position="top-right" className="top-1.5 right-1.5 !w-4 !h-4 text-[#B89A68]/50" />
-
-              {/* Envelope Crest & Wax Seal Badge */}
-              <div className="my-1 relative flex items-center justify-center">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#B89A68] via-[#EAD8BA] to-[#8D7047] p-[1px] shadow-sm flex items-center justify-center">
-                  <div className="w-full h-full rounded-full bg-[#FAF5EC] flex items-center justify-center">
-                    <DawoodiBohraStarPattern size={17} className="text-[#6D522B] animate-pulse" />
-                  </div>
-                </div>
-              </div>
-
-              {/* Heading */}
-              <span className="font-serif-luxury text-[11px] sm:text-xs tracking-[0.28em] uppercase font-bold text-[#4A381E] mt-1.5 mb-0.5">
-                OUR WEDDING DATE
-              </span>
-
-              {/* Gentle Shimmering Call to Action Cue */}
-              {/* <div className="mt-1.5 inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#8D7047]/10 border border-[#B89A68]/30">
-                <span className="font-serif-luxury text-[9.5px] sm:text-[10px] tracking-[0.22em] uppercase font-semibold text-[#6D522B]">
-                  REVEAL DATE & TIME ✦
-                </span>
-              </div> */}
-
-              {/* Metallic Shimmer Sweep Across Unopened Seal */}
-              <motion.div
-                animate={{ x: ['-100%', '200%'] }}
-                transition={{ repeat: Infinity, duration: 3.5, ease: 'easeInOut' }}
-                className="absolute inset-0 w-1/3 bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12 pointer-events-none"
-              />
-            </motion.div>
-          ) : (
-            /* REVEALED STATE: TWO-COLUMN EDITORIAL DATE & TIME INSCRIPTION CARD */
-            <motion.div
-              key="revealed-date"
-              initial={{ opacity: 0, y: 15, scale: 0.94, rotateX: 20 }}
-              animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
-              transition={{ duration: 0.65, ease: PREMIUM_EASE }}
-              className="relative w-full bg-gradient-to-b from-[#FFFDF9] via-[#FAF5EC] to-[#F5E8D7] rounded-xl px-4 py-4 sm:px-6 sm:py-5 border border-[#B89A68]/60 shadow-[0_10px_28px_-8px_rgba(100,75,40,0.16),inset_0_1px_0_rgba(255,255,255,0.9)] text-center flex flex-col items-center justify-center overflow-hidden transform-gpu"
-            >
-              {/* Corner Filigree Borders */}
-              <CornerFiligree position="top-left" className="top-1.5 left-1.5 !w-4.5 !h-4.5 text-[#B89A68]/50" />
-              <CornerFiligree position="top-right" className="top-1.5 right-1.5 !w-4.5 !h-4.5 text-[#B89A68]/50" />
-              <CornerFiligree position="bottom-left" className="bottom-1.5 left-1.5 !w-4.5 !h-4.5 text-[#B89A68]/50" />
-              <CornerFiligree position="bottom-right" className="bottom-1.5 right-1.5 !w-4.5 !h-4.5 text-[#B89A68]/50" />
-
-              {/* Top Star Accent Header */}
-              <div className="flex items-center gap-1.5 mb-2 text-[#8D7047] opacity-75">
-                <span className="h-[0.5px] w-6 bg-[#B89A68]" />
-                <DawoodiBohraStarPattern size={11} className="text-[#6D522B]" />
-                <span className="h-[0.5px] w-6 bg-[#B89A68]" />
-              </div>
-
-              {/* TWO-COLUMN EDITORIAL DATE & TIME GRID */}
-              <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2 sm:gap-4 w-full my-1">
-                
-                {/* LEFT COLUMN: DATE */}
-                <div className="flex flex-col items-center justify-center">
-                  <span className="font-serif-luxury text-[11px] sm:text-[11px] font-bold tracking-[0.25em] uppercase text-[#6D522B]">
-                    FRIDAY
-                  </span>
-                  <span className="font-arabic-luxury text-3xl sm:text-4xl font-semibold text-[#4A381E] leading-none tracking-tight drop-shadow-xs">
-                    27
-                  </span>
-                  <span className="font-serif-luxury text-[11px] sm:text-[10.5px] font-bold tracking-[0.22em] uppercase text-[#6D522B] whitespace-nowrap">
-                    NOVEMBER 2026
-                  </span>
-                </div>
-
-                {/* ELEGANT VERTICAL DIVIDER LINE */}
-                <div className="h-14 sm:h-16 w-[1px] bg-gradient-to-b from-transparent via-[#B89A68]/60 to-transparent" />
-
-                {/* RIGHT COLUMN: TIME */}
-                <div className="flex flex-col items-center justify-center">
-                  <span className="font-serif-luxury text-[10px] sm:text-[11px] font-bold tracking-[0.25em] uppercase text-[#6D522B]">
-                    AT
-                  </span>
-                  <span className="font-arabic-luxury text-xl sm:text-2xl font-semibold text-[#4A381E] leading-none my-1 tracking-tight drop-shadow-xs whitespace-nowrap">
-                    07:30 PM
-                  </span>
-                  <span className="font-serif-luxury text-[9px] sm:text-[10px] font-semibold tracking-[0.18em] uppercase text-[#8D7047] whitespace-nowrap">
-                    (Batul Hall)
-                  </span>
-                </div>
-
-              </div>
-
-              {/* Bottom Decorative Accent */}
-              <div className="flex items-center gap-1.5 mt-2 text-[#8D7047] opacity-75">
-                <span className="h-[0.5px] w-7 bg-[#B89A68]" />
-                <span className="text-[6px]">◆</span>
-                <span className="h-[0.5px] w-7 bg-[#B89A68]" />
-              </div>
-
-              {/* Champagne Gold Shimmer Sweep */}
-              <motion.div
-                initial={{ x: '-100%' }}
-                animate={{ x: '200%' }}
-                transition={{ duration: 1.6, ease: 'easeInOut' }}
-                className="absolute inset-0 w-1/2 bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12 pointer-events-none"
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
-    </div>
-  );
-};
+import { LuxuryScratchCard } from './LuxuryScratchCard';
 
 // ============================================================================
 // MAIN FORMAL INVITATION SECTION COMPONENT
@@ -573,7 +437,13 @@ export const FormalInvitation: React.FC = () => {
                 transition={{ duration: 0.75, ease: PREMIUM_EASE }}
                 className="pt-2 relative max-w-sm mx-auto w-full"
               >
-                <LuxuryDateRevealPanel />
+                <LuxuryScratchCard
+                  dayName="FRIDAY"
+                  dayNumber="27"
+                  monthYear="NOVEMBER 2026"
+                  time="07:30 PM"
+                  venueName="(Batul Hall)"
+                />
               </motion.div>
 
               {/* PHASE 12: #NOORKIHOOR LUXURY HASHTAG BADGE */}

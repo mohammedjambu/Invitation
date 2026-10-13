@@ -129,14 +129,6 @@ export const Countdown: React.FC = () => {
     }
   };
 
-  const dateConfirmationVariants: Variants = {
-    hidden: { opacity: 0, y: 10 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.65, ease: PREMIUM_EASE }
-    }
-  };
 
   return (
     <section id="countdown-section" className="relative py-20 sm:py-28 px-4 sm:px-6 bg-[#F8F0E5] overflow-hidden text-center select-none">
@@ -237,11 +229,11 @@ export const Countdown: React.FC = () => {
         </motion.div>
 
         {/* WEDDING DATE CONFIRMATION ACCENT */}
-        <motion.div variants={dateConfirmationVariants} className="mt-1">
+        {/* <motion.div variants={dateConfirmationVariants} className="mt-1">
           <p className="font-serif-luxury text-xs sm:text-sm font-bold tracking-[0.3em] uppercase text-[#6D522B]">
             FRIDAY · 27 NOVEMBER 2026
           </p>
-        </motion.div>
+        </motion.div> */}
 
       </motion.div>
     </section>
